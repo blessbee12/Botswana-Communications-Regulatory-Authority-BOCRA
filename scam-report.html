@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report a Scam – BOCRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --navy:       #0B2D6E;
+      --navy-dark:  #071D4A;
+      --navy-mid:   #143A8C;
+      --navy-light: #1E50B0;
+      --gold:       #C9A227;
+      --gold-light: #E8C44A;
+      --gold-pale:  #FDF4DC;
+      --white:      #FFFFFF;
+      --off-white:  #F8F9FC;
+      --gray-50:    #F1F3F8;
+      --gray-100:   #E2E6EF;
+      --gray-300:   #B0BAD0;
+      --gray-500:   #6B7A99;
+      --gray-700:   #374166;
+      --text:       #1C2B4A;
+      --text-muted: #5A6A8A;
+      --success:    #0A7A4B;
+      --danger:     #C0252A;
+      --danger-pale:#FBE9E9;
+      --danger-mid: #9B1B1B;
+      --radius:     10px;
+      --radius-lg:  16px;
+      --shadow:     0 2px 16px rgba(11,45,110,.09);
+      --shadow-md:  0 6px 32px rgba(11,45,110,.13);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body { font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--white); line-height: 1.65; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.25; color: var(--navy); }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── BADGES ── */
+    .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+    .badge-gold   { background: var(--gold-pale); color: #7A5800; border: 1px solid rgba(201,162,39,.3); }
+    .badge-blue   { background: #EAF0FB; color: var(--navy); border: 1px solid rgba(11,45,110,.15); }
+    .badge-green  { background: #E6F4ED; color: var(--success); border: 1px solid rgba(10,122,75,.2); }
+    .badge-red    { background: var(--danger-pale); color: var(--danger-mid); border: 1px solid rgba(155,27,27,.2); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 24px; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s ease; border: none; }
+    .btn-gold    { background: var(--gold); color: #2C1800; }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(201,162,39,.35); }
+    .btn-navy    { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+    .btn-danger  { background: var(--danger); color: var(--white); }
+    .btn-danger:hover { background: var(--danger-mid); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(192,37,42,.3); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.4); }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+    .btn-ghost   { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-100); }
+    .btn-ghost:hover { background: var(--gray-50); border-color: var(--gray-300); }
+
+    /* color helpers */
+    .bg-blue-pale   { background: #EAF0FB; }
+    .bg-gold-pale   { background: var(--gold-pale); }
+    .bg-green-pale  { background: #E6F4ED; }
+    .bg-red-pale    { background: var(--danger-pale); }
+    .text-blue   { color: var(--navy); }
+    .text-gold   { color: #7A5800; }
+    .text-green  { color: var(--success); }
+    .text-red    { color: var(--danger-mid); }
+
+    /* ── TOP BAR ── */
+    .topbar { background: var(--navy-dark); padding: 6px 0; font-size: 12px; color: rgba(255,255,255,.65); }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar-left { display: flex; align-items: center; gap: 20px; }
+    .topbar-left a { color: rgba(255,255,255,.65); transition: color .2s; }
+    .topbar-left a:hover { color: var(--gold); }
+    .topbar-right { display: flex; align-items: center; gap: 14px; }
+    .topbar-right a { color: rgba(255,255,255,.65); font-size: 13px; transition: color .2s; }
+    .topbar-right a:hover { color: var(--white); }
+    .topbar-divider { color: rgba(255,255,255,.2); }
+
+    /* ── HEADER ── */
+    .header { background: var(--white); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--gray-100); box-shadow: 0 2px 12px rgba(11,45,110,.08); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-mark { width: 44px; height: 44px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-mark svg { width: 24px; height: 24px; }
+    .logo-text h2 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -.3px; }
+    .logo-text p  { font-size: 10.5px; color: var(--gray-500); font-weight: 400; letter-spacing: .3px; }
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+    .nav-menu a { font-size: 13.5px; font-weight: 500; color: var(--gray-700); padding: 6px 12px; border-radius: 6px; transition: all .18s; white-space: nowrap; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--navy); background: var(--gray-50); }
+    .nav-menu a.active { font-weight: 600; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--navy); font-size: 22px; }
+    .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--gray-100); padding: 12px 0 20px; }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a { display: block; padding: 10px 24px; font-size: 14px; font-weight: 500; color: var(--gray-700); transition: background .15s; }
+    .mobile-nav a:hover { background: var(--gray-50); color: var(--navy); }
+
+    /* ── ALERT BANNER ── */
+    .alert-banner {
+      background: var(--danger-pale); border-bottom: 2px solid var(--danger);
+      padding: 12px 0;
+    }
+    .alert-inner { display: flex; align-items: center; gap: 12px; }
+    .alert-icon { width: 32px; height: 32px; background: var(--danger); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .alert-icon i { color: var(--white); font-size: 14px; }
+    .alert-text { flex: 1; font-size: 13.5px; font-weight: 500; color: var(--danger-mid); }
+    .alert-text strong { font-weight: 700; }
+    .alert-text a { color: var(--danger); text-decoration: underline; font-weight: 600; }
+
+    /* ── PAGE HERO (red variant) ── */
+    .page-hero {
+      background: linear-gradient(135deg, #6B0E11 0%, #9B1B1B 40%, #C0252A 100%);
+      position: relative; overflow: hidden; padding: 72px 0 64px;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 50%, rgba(192,37,42,.4) 0%, transparent 55%),
+        radial-gradient(ellipse at 5% 90%, rgba(201,162,39,.08) 0%, transparent 45%);
+    }
+    .page-hero-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .page-hero-circle  { position: absolute; right: -120px; top: -120px; width: 520px; height: 520px; border: 1px solid rgba(255,255,255,.06); border-radius: 50%; }
+    .page-hero-circle2 { position: absolute; right: 40px; top: 40px; width: 260px; height: 260px; border: 1px solid rgba(255,255,255,.05); border-radius: 50%; }
+    .page-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,.5); margin-bottom: 18px; }
+    .breadcrumb a { color: rgba(255,255,255,.5); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb i { font-size: 9px; }
+    .page-hero h1 { font-size: 42px; color: var(--white); margin-bottom: 16px; max-width: 560px; }
+    .page-hero h1 em { color: var(--gold-light); font-style: normal; }
+    .page-hero-lead { font-size: 15.5px; color: rgba(255,255,255,.72); line-height: 1.75; max-width: 540px; }
+    .page-hero-aside { display: flex; flex-direction: column; gap: 12px; align-self: center; }
+    .hero-pill { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .hero-pill i { color: var(--gold); font-size: 14px; }
+    .hero-pill span { font-size: 13px; color: rgba(255,255,255,.8); }
+
+    /* ── SECTION HEADER ── */
+    .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .section-eyebrow.red { color: var(--danger); }
+    .section-eyebrow.red::before { background: var(--danger); }
+
+    /* ── SCAM TYPES ── */
+    .scam-types { padding: 72px 0; background: var(--gray-50); }
+    .scam-types-intro { max-width: 620px; margin-bottom: 44px; }
+    .scam-types-intro h2 { font-size: 30px; margin-bottom: 12px; }
+    .scam-types-intro p { font-size: 14.5px; color: var(--text-muted); line-height: 1.8; }
+    .scam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .scam-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      transition: all .25s; position: relative; overflow: hidden;
+    }
+    .scam-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--danger); }
+    .scam-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(192,37,42,.2); }
+    .scam-icon { width: 52px; height: 52px; background: var(--danger-pale); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--danger); margin-bottom: 18px; }
+    .scam-card h3 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .scam-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .scam-signals { list-style: none; }
+    .scam-signals li { font-size: 12.5px; color: var(--text-muted); padding: 4px 0; display: flex; align-items: flex-start; gap: 8px; }
+    .scam-signals li i { color: var(--danger); font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+
+    /* ── WARNING TIPS ── */
+    .warning-section { padding: 72px 0; background: var(--white); }
+    .warning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+    .warning-card {
+      border-radius: var(--radius-lg); padding: 28px 26px;
+      display: flex; gap: 20px; align-items: flex-start;
+      border: 1px solid transparent; transition: all .25s;
+    }
+    .warning-card.danger-card { background: var(--danger-pale); border-color: rgba(192,37,42,.2); }
+    .warning-card.safe-card   { background: #E6F4ED; border-color: rgba(10,122,75,.2); }
+    .warning-card:hover { box-shadow: var(--shadow); }
+    .warning-card-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .danger-card .warning-card-icon { background: rgba(192,37,42,.12); color: var(--danger); }
+    .safe-card   .warning-card-icon { background: rgba(10,122,75,.12); color: var(--success); }
+    .warning-card h3 { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+    .danger-card h3 { color: var(--danger-mid); }
+    .safe-card   h3 { color: #054D2E; }
+    .warning-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .warning-list li { font-size: 13px; display: flex; align-items: flex-start; gap: 9px; line-height: 1.5; }
+    .danger-card .warning-list li { color: var(--danger-mid); }
+    .safe-card   .warning-list li { color: #054D2E; }
+    .warning-list li i { font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+    .danger-card .warning-list li i { color: var(--danger); }
+    .safe-card   .warning-list li i { color: var(--success); }
+
+    /* ── REPORT FORM ── */
+    .report-section { padding: 80px 0; background: var(--gray-50); }
+    .report-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+
+    /* Sidebar */
+    .report-sidebar { position: sticky; top: 90px; }
+    .sidebar-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 16px; }
+    .sidebar-card h4 { font-family: 'DM Sans', sans-serif; font-size: 14.5px; font-weight: 700; margin-bottom: 16px; color: var(--navy); display: flex; align-items: center; gap: 9px; }
+    .sidebar-card h4 i { color: var(--gold); }
+    .process-step { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+    .process-step:last-child { margin-bottom: 0; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .step-text span { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    .urgent-card { background: var(--danger); border-radius: var(--radius-lg); padding: 24px 28px; }
+    .urgent-card h4 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .urgent-card p { font-size: 13px; color: rgba(255,255,255,.8); line-height: 1.6; margin-bottom: 16px; }
+    .urgent-phone { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.12); border-radius: 8px; padding: 12px 16px; }
+    .urgent-phone i { color: var(--gold); font-size: 18px; }
+    .urgent-phone span { font-size: 18px; font-weight: 700; color: var(--white); }
+    .urgent-phone small { font-size: 11px; color: rgba(255,255,255,.6); display: block; }
+
+    /* Form */
+    .report-form-wrap { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 40px; }
+    .form-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-100); }
+    .form-header h2 { font-size: 26px; margin-bottom: 8px; }
+    .form-header p { font-size: 14px; color: var(--text-muted); }
+
+    /* Progress steps */
+    .form-steps { display: flex; align-items: center; gap: 0; margin-bottom: 36px; }
+    .form-step { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .form-step:last-child .step-line { display: none; }
+    .form-step-circle {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; transition: all .2s;
+    }
+    .form-step.active .form-step-circle  { background: var(--danger); color: var(--white); }
+    .form-step.done   .form-step-circle  { background: var(--success); color: var(--white); }
+    .form-step.waiting .form-step-circle { background: var(--gray-100); color: var(--gray-500); }
+    .form-step-label { font-size: 12px; font-weight: 600; }
+    .form-step.active .form-step-label  { color: var(--danger); }
+    .form-step.done   .form-step-label  { color: var(--success); }
+    .form-step.waiting .form-step-label { color: var(--gray-500); }
+    .step-line { flex: 1; height: 2px; background: var(--gray-100); margin: 0 8px; }
+    .step-line.done { background: var(--success); }
+
+    /* Form fields */
+    .form-section-title { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); margin: 28px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-100); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+    .form-group label .req { color: var(--danger); margin-left: 3px; }
+    .form-group label .opt { font-size: 11px; color: var(--gray-500); font-weight: 400; margin-left: 5px; }
+    .form-control {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-100);
+      border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+      color: var(--text); background: var(--white); outline: none;
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .form-control:focus { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(192,37,42,.08); }
+    .form-control::placeholder { color: var(--gray-300); }
+    textarea.form-control { resize: vertical; min-height: 110px; }
+    select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7A99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-hint { font-size: 11.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
+
+    /* Scam type selector */
+    .scam-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+    .scam-type-btn {
+      border: 1.5px solid var(--gray-100); border-radius: 8px; padding: 12px 10px;
+      text-align: center; cursor: pointer; transition: all .18s;
+      background: var(--white); display: flex; flex-direction: column; align-items: center; gap: 7px;
+    }
+    .scam-type-btn:hover { border-color: var(--danger); background: var(--danger-pale); }
+    .scam-type-btn.selected { border-color: var(--danger); background: var(--danger-pale); }
+    .scam-type-btn i { font-size: 20px; color: var(--gray-500); }
+    .scam-type-btn.selected i { color: var(--danger); }
+    .scam-type-btn span { font-size: 11.5px; font-weight: 600; color: var(--gray-700); }
+    .scam-type-btn.selected span { color: var(--danger-mid); }
+
+    /* Upload zone */
+    .upload-zone {
+      border: 2px dashed var(--gray-100); border-radius: 8px;
+      padding: 28px 20px; text-align: center; cursor: pointer;
+      transition: all .2s; background: var(--gray-50);
+    }
+    .upload-zone:hover { border-color: var(--navy); background: #EAF0FB; }
+    .upload-zone i { font-size: 28px; color: var(--gray-300); display: block; margin-bottom: 10px; }
+    .upload-zone p { font-size: 13px; color: var(--text-muted); }
+    .upload-zone strong { color: var(--navy); }
+    .upload-zone small { display: block; font-size: 11.5px; color: var(--gray-500); margin-top: 6px; }
+
+    /* Checkbox */
+    .form-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+    .form-check input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--danger); flex-shrink: 0; cursor: pointer; }
+    .form-check label { font-size: 13px; color: var(--text-muted); line-height: 1.55; cursor: pointer; }
+    .form-check label a { color: var(--navy); text-decoration: underline; }
+
+    .form-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--gray-100); flex-wrap: wrap; gap: 12px; }
+    .form-actions-note { font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 7px; }
+    .form-actions-note i { color: var(--success); }
+
+    /* ── STATS BAND ── */
+    .stats-band { background: var(--navy); padding: 56px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-item {}
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+    /* ── RECENT SCAM ALERTS ── */
+    .alerts-section { padding: 72px 0; background: var(--white); }
+    .alert-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+    .alert-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-left: 4px solid var(--danger);
+      border-radius: var(--radius); padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 18px; transition: all .2s;
+    }
+    .alert-card:hover { box-shadow: var(--shadow); }
+    .alert-card-icon { width: 42px; height: 42px; background: var(--danger-pale); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--danger); flex-shrink: 0; }
+    .alert-card-body { flex: 1; }
+    .alert-card-body h4 { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 5px; }
+    .alert-card-body p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+    .alert-card-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+    .alert-date { font-size: 11.5px; color: var(--gray-500); display: flex; align-items: center; gap: 5px; }
+    .alert-card-badge { padding: 4px 0; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { padding: 64px 0; background: var(--navy); position: relative; overflow: hidden; }
+    .cta-banner::before { content: ''; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border: 1px solid rgba(255,255,255,.05); border-radius: 50%; }
+    .cta-banner::after  { content: ''; position: absolute; top: -20px; right: -20px; width: 200px; height: 200px; border: 1px solid rgba(255,255,255,.07); border-radius: 50%; }
+    .cta-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-text h2 { font-size: 30px; color: var(--white); margin-bottom: 10px; }
+    .cta-text p  { font-size: 14.5px; color: rgba(255,255,255,.65); max-width: 520px; }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--navy-dark); color: rgba(255,255,255,.7); }
+    .footer-top { padding: 60px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+    .footer-brand p { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.5); margin: 14px 0 20px; max-width: 260px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo-mark { width: 38px; height: 38px; background: rgba(255,255,255,.1); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-text { font-size: 16px; font-weight: 700; color: var(--white); font-family: 'DM Sans', sans-serif; }
+    .footer-logo-sub { font-size: 10px; color: rgba(255,255,255,.4); }
+    .social-links { display: flex; gap: 10px; }
+    .social-link { width: 34px; height: 34px; background: rgba(255,255,255,.08); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(255,255,255,.5); transition: all .2s; }
+    .social-link:hover { background: var(--gold); color: #2C1800; }
+    .footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 9px; }
+    .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .2s; display: flex; align-items: center; gap: 6px; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-col ul li a i { font-size: 10px; opacity: .5; }
+    .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
+    .footer-contact-item i { color: var(--gold); font-size: 13px; margin-top: 2px; flex-shrink: 0; }
+    .footer-contact-item p { font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.55; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding: 18px 0; }
+    .footer-bottom-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,.3); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 12px; color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,.7); }
+
+    /* ── SUCCESS STATE ── */
+    .success-overlay { display: none; position: fixed; inset: 0; background: rgba(7,29,74,.75); z-index: 999; align-items: center; justify-content: center; }
+    .success-overlay.show { display: flex; }
+    .success-modal { background: var(--white); border-radius: var(--radius-lg); padding: 52px 48px; max-width: 480px; width: 90%; text-align: center; position: relative; }
+    .success-icon { width: 72px; height: 72px; background: #E6F4ED; border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; }
+    .success-icon i { font-size: 32px; color: var(--success); }
+    .success-modal h2 { font-size: 24px; margin-bottom: 14px; }
+    .success-modal p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 10px; }
+    .success-ref { background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 8px; padding: 12px 20px; font-size: 14px; font-weight: 700; color: var(--navy); margin: 20px 0; display: inline-block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .scam-grid { grid-template-columns: repeat(2, 1fr); }
+      .report-layout { grid-template-columns: 1fr; }
+      .report-sidebar { position: static; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .warning-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 28px; }
+      .page-hero-inner { grid-template-columns: 1fr; }
+      .page-hero-aside { display: none; }
+      .nav-menu { display: none; }
+      .header-actions .btn { display: none; }
+      .hamburger { display: block; }
+      .scam-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .scam-type-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .report-form-wrap { padding: 24px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-actions { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:5px"></i> Plot 206, Gaborone, Botswana</span>
+        <span class="topbar-divider">|</span>
+        <a href="tel:+26739577750"><i class="fas fa-phone-alt" style="margin-right:5px"></i>+267 395 7755</a>
+        <span class="topbar-divider">|</span>
+        <a href="mailto:info@bocra.org.bw"><i class="fas fa-envelope" style="margin-right:5px"></i>info@bocra.org.bw</a>
+      </div>
+      <div class="topbar-right">
+        <a href="#">e-Services Portal</a>
+        <span class="topbar-divider">|</span>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
+              <path d="M12 5v7l4 2.5" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 8.5c1.5-2 4-3 6-3" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h2>BOCRA</h2>
+            <p>Botswana Communications Regulatory Authority</p>
+          </div>
+        </a>
+        <nav class="nav-menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="#">Services</a>
+          <a href="#">Licensing</a>
+          <a href="#">Publications</a>
+          <a href="news.html">News</a>
+          <a href="#">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="#report-form" class="btn btn-danger"><i class="fas fa-exclamation-triangle"></i> Report a Scam</a>
+        </div>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="container">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="#">Services</a>
+        <a href="#">Licensing</a>
+        <a href="#">Publications</a>
+        <a href="news.html">News</a>
+        <a href="#">Contact</a>
+        <a href="#report-form" style="color:var(--danger);font-weight:700;margin-top:8px"><i class="fas fa-exclamation-triangle" style="margin-right:6px"></i>Report a Scam</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    <div class="container">
+      <div class="alert-inner">
+        <div class="alert-icon"><i class="fas fa-exclamation"></i></div>
+        <div class="alert-text">
+          <strong>Active Scam Alert:</strong> Fraudsters are impersonating BOCRA officials and demanding payments for fake licence renewals. BOCRA will <strong>never</strong> request payment via mobile money. <a href="#">Read the full advisory →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-pattern"></div>
+    <div class="page-hero-circle"></div>
+    <div class="page-hero-circle2"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <div>
+          <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="#">Services</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Report a Scam</span>
+          </div>
+          <h1>Report a <em>Telecommunications Scam</em></h1>
+          <p class="page-hero-lead">Help protect Botswana's communications consumers. Report suspected scams, fraud, and cyber-enabled crimes to BOCRA's dedicated consumer protection team.</p>
+        </div>
+        <div class="page-hero-aside">
+          <div class="hero-pill"><i class="fas fa-shield-alt"></i><span>Your identity is protected</span></div>
+          <div class="hero-pill"><i class="fas fa-clock"></i><span>Response within 3 business days</span></div>
+          <div class="hero-pill"><i class="fas fa-lock"></i><span>Secure &amp; confidential reporting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCAM TYPES -->
+  <section class="scam-types">
+    <div class="container">
+      <div class="scam-types-intro">
+        <div class="section-eyebrow red">Know the Threats</div>
+        <h2>Common Telecommunications Scams</h2>
+        <p>Recognising a scam is the first step to protecting yourself. Below are the most frequently reported types of fraud affecting Botswana's communications consumers.</p>
+      </div>
+      <div class="scam-grid">
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>SIM-Swap Fraud</h3>
+          <p>Criminals deceive mobile operators into transferring your phone number to a SIM card they control, gaining access to your accounts and banking.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Sudden loss of mobile signal</li>
+            <li><i class="fas fa-circle"></i> Unable to make calls or send messages</li>
+            <li><i class="fas fa-circle"></i> Unexpected banking OTPs not received</li>
+            <li><i class="fas fa-circle"></i> Unauthorised account access notifications</li>
+          </ul>
+        </div>
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-phone-volume"></i></div>
+          <h3>Impersonation Calls</h3>
+          <p>Fraudsters pose as BOCRA officials, network operators, or government agencies to extract personal information or demand payments.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Caller claims to be from BOCRA or BTA</li>
+            <li><i class="fas fa-circle"></i> Requests for payment via mobile money</li>
+            <li><i class="fas fa-circle"></i> Threats of service disconnection</li>
+            <li><i class="fas fa-circle"></i> Urgency and pressure to act immediately</li>
+          </ul>
+        </div>
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-sms"></i></div>
+          <h3>Smishing (SMS Scams)</h3>
+          <p>Fraudulent text messages designed to steal your personal data, banking credentials, or trick you into calling premium-rate numbers.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Unexpected prize or lottery notifications</li>
+            <li><i class="fas fa-circle"></i> Links to suspicious websites</li>
+            <li><i class="fas fa-circle"></i> Requests for PIN or password via SMS</li>
+            <li><i class="fas fa-circle"></i> Messages from unknown shortcodes</li>
+          </ul>
+        </div>
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-globe"></i></div>
+          <h3>Online &amp; Data Fraud</h3>
+          <p>Scams exploiting internet services, social media, and fraudulent websites to steal information or money from consumers.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Fake telecom operator websites</li>
+            <li><i class="fas fa-circle"></i> Data bundle resale scams</li>
+            <li><i class="fas fa-circle"></i> Wi-Fi hotspot credential theft</li>
+            <li><i class="fas fa-circle"></i> Social media impersonation of operators</li>
+          </ul>
+        </div>
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-money-bill-wave"></i></div>
+          <h3>Premium Rate Abuse</h3>
+          <p>Unauthorised subscription services and premium-rate calls that generate charges on your bill without your knowledge or consent.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Unexplained charges on your mobile bill</li>
+            <li><i class="fas fa-circle"></i> Subscription services you didn't sign up for</li>
+            <li><i class="fas fa-circle"></i> Rapid data or airtime depletion</li>
+            <li><i class="fas fa-circle"></i> Premium SMS received unsolicited</li>
+          </ul>
+        </div>
+
+        <div class="scam-card">
+          <div class="scam-icon"><i class="fas fa-user-secret"></i></div>
+          <h3>Identity &amp; Account Theft</h3>
+          <p>Criminals using stolen personal information to fraudulently register SIM cards or open communications accounts in your name.</p>
+          <ul class="scam-signals">
+            <li><i class="fas fa-circle"></i> Unexpected new account notifications</li>
+            <li><i class="fas fa-circle"></i> Bills for services you never used</li>
+            <li><i class="fas fa-circle"></i> SIM cards registered under your ID</li>
+            <li><i class="fas fa-circle"></i> Calls from unknown numbers claiming to be you</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WARNING TIPS -->
+  <section class="warning-section">
+    <div class="container">
+      <div class="section-eyebrow">Protect Yourself</div>
+      <h2 style="font-size:28px;margin-bottom:6px">What to Do — and What Not to Do</h2>
+      <p style="font-size:14.5px;color:var(--text-muted);max-width:580px;margin-bottom:0">Follow these guidelines to keep your information and money safe.</p>
+      <div class="warning-grid">
+
+        <div class="warning-card danger-card">
+          <div class="warning-card-icon"><i class="fas fa-times-circle"></i></div>
+          <div>
+            <h3><i class="fas fa-ban" style="margin-right:7px;font-size:14px"></i>Never Do This</h3>
+            <ul class="warning-list">
+              <li><i class="fas fa-times-circle"></i> Share your PIN, password, or OTP with anyone — including "officials"</li>
+              <li><i class="fas fa-times-circle"></i> Pay fees or fines via mobile money on instruction of a caller</li>
+              <li><i class="fas fa-times-circle"></i> Click links in unexpected SMS messages</li>
+              <li><i class="fas fa-times-circle"></i> Confirm personal details to unsolicited callers</li>
+              <li><i class="fas fa-times-circle"></i> Respond to messages promising prizes you didn't enter for</li>
+              <li><i class="fas fa-times-circle"></i> Allow others to register SIM cards in your name</li>
+              <li><i class="fas fa-times-circle"></i> Transfer money to "hold" a prize or reward</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-card safe-card">
+          <div class="warning-card-icon"><i class="fas fa-check-circle"></i></div>
+          <div>
+            <h3><i class="fas fa-shield-alt" style="margin-right:7px;font-size:14px"></i>Always Do This</h3>
+            <ul class="warning-list">
+              <li><i class="fas fa-check-circle"></i> Verify caller identity by calling the official operator number</li>
+              <li><i class="fas fa-check-circle"></i> Enable two-factor authentication on all accounts</li>
+              <li><i class="fas fa-check-circle"></i> Regularly review your mobile billing statements</li>
+              <li><i class="fas fa-check-circle"></i> Report suspicious activity to BOCRA immediately</li>
+              <li><i class="fas fa-check-circle"></i> Contact your network operator if you lose signal unexpectedly</li>
+              <li><i class="fas fa-check-circle"></i> Keep your national identity documents secure</li>
+              <li><i class="fas fa-check-circle"></i> Educate family members, especially the elderly, about scams</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORT FORM -->
+  <section class="report-section" id="report-form">
+    <div class="container">
+      <div class="report-layout">
+
+        <!-- Sidebar -->
+        <div class="report-sidebar">
+          <div class="sidebar-card">
+            <h4><i class="fas fa-list-ol"></i> How Reporting Works</h4>
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-text">
+                <strong>Submit Your Report</strong>
+                <span>Fill in the form with details of the incident and any evidence you have.</span>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-text">
+                <strong>Receive Reference Number</strong>
+                <span>You'll receive a unique reference number to track your report's progress.</span>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-text">
+                <strong>Investigation Begins</strong>
+                <span>Our Consumer Affairs team reviews and investigates within 3 business days.</span>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-text">
+                <strong>Outcome &amp; Action</strong>
+                <span>We notify you of findings and any enforcement or advisory action taken.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="urgent-card">
+            <h4><i class="fas fa-phone-alt" style="margin-right:7px"></i>Emergency Hotline</h4>
+            <p>If you are experiencing active fraud or immediate financial loss, call our consumer protection hotline immediately.</p>
+            <div class="urgent-phone">
+              <i class="fas fa-phone-volume"></i>
+              <div>
+                <span>+267 395 7755</span>
+                <small>Mon–Fri · 8:00 AM – 5:00 PM</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="report-form-wrap">
+          <div class="form-header">
+            <div class="section-eyebrow red" style="margin-bottom:12px">Secure Reporting</div>
+            <h2>Submit a Scam Report</h2>
+            <p>All fields marked with <span style="color:var(--danger)">*</span> are required. Your report is treated as confidential and you may report anonymously.</p>
+          </div>
+
+          <!-- Progress -->
+          <div class="form-steps">
+            <div class="form-step active">
+              <div class="form-step-circle">1</div>
+              <span class="form-step-label">Your Details</span>
+              <div class="step-line"></div>
+            </div>
+            <div class="form-step waiting">
+              <div class="form-step-circle">2</div>
+              <span class="form-step-label">Incident Info</span>
+              <div class="step-line"></div>
+            </div>
+            <div class="form-step waiting">
+              <div class="form-step-circle">3</div>
+              <span class="form-step-label">Evidence</span>
+              <div class="step-line"></div>
+            </div>
+            <div class="form-step waiting">
+              <div class="form-step-circle">4</div>
+              <span class="form-step-label">Submit</span>
+            </div>
+          </div>
+
+          <form id="scamForm" novalidate>
+
+            <!-- Section 1: Reporter Details -->
+            <div class="form-section-title">Your Information (Optional — You May Report Anonymously)</div>
+
+            <div class="form-check" style="margin-bottom:20px">
+              <input type="checkbox" id="anonymous" name="anonymous">
+              <label for="anonymous">I wish to report anonymously — do not include my personal details in the report</label>
+            </div>
+
+            <div id="reporterFields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name <span class="opt">(optional if anonymous)</span></label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="e.g. Keitumetse">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name <span class="opt">(optional if anonymous)</span></label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="e.g. Modise">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address <span class="opt">(for updates)</span></label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Contact Number <span class="opt">(optional)</span></label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+267 7X XXX XXX">
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Scam Type -->
+            <div class="form-section-title">Type of Scam <span style="color:var(--danger)">*</span></div>
+
+            <div class="scam-type-grid" id="scamTypeGrid">
+              <div class="scam-type-btn selected" data-type="sim-swap">
+                <i class="fas fa-mobile-alt"></i>
+                <span>SIM-Swap</span>
+              </div>
+              <div class="scam-type-btn" data-type="impersonation">
+                <i class="fas fa-user-secret"></i>
+                <span>Impersonation</span>
+              </div>
+              <div class="scam-type-btn" data-type="smishing">
+                <i class="fas fa-sms"></i>
+                <span>SMS Scam</span>
+              </div>
+              <div class="scam-type-btn" data-type="online-fraud">
+                <i class="fas fa-globe"></i>
+                <span>Online Fraud</span>
+              </div>
+              <div class="scam-type-btn" data-type="premium-rate">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Premium Rate</span>
+              </div>
+              <div class="scam-type-btn" data-type="other">
+                <i class="fas fa-ellipsis-h"></i>
+                <span>Other</span>
+              </div>
+            </div>
+
+            <!-- Section 3: Incident Details -->
+            <div class="form-section-title">Incident Details <span style="color:var(--danger)">*</span></div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="incidentDate">Date of Incident <span class="req">*</span></label>
+                <input type="date" class="form-control" id="incidentDate" name="incidentDate" required>
+              </div>
+              <div class="form-group">
+                <label for="incidentTime">Approximate Time</label>
+                <input type="time" class="form-control" id="incidentTime" name="incidentTime">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="affectedNumber">Affected Phone Number / Account <span class="req">*</span></label>
+              <input type="text" class="form-control" id="affectedNumber" name="affectedNumber" placeholder="e.g. +267 77 XXX XXX or account number" required>
+              <p class="form-hint">Enter the mobile number or service account that was targeted or affected.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="operator">Network Operator Involved</label>
+                <select class="form-control" id="operator" name="operator">
+                  <option value="">Select operator…</option>
+                  <option>Mascom Wireless</option>
+                  <option>Orange Botswana</option>
+                  <option>BTC (Botswana Telecommunications Corporation)</option>
+                  <option>Other / Unknown</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="lossAmount">Financial Loss (BWP) <span class="opt">(if applicable)</span></label>
+                <input type="number" class="form-control" id="lossAmount" name="lossAmount" placeholder="e.g. 500">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="scammerContact">Scammer's Number / Contact Used <span class="opt">(if known)</span></label>
+              <input type="text" class="form-control" id="scammerContact" name="scammerContact" placeholder="e.g. +267 7X XXX XXX or email/website">
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description of Incident <span class="req">*</span></label>
+              <textarea class="form-control" id="description" name="description" rows="5" placeholder="Please describe what happened in as much detail as possible — what was said, what was requested, and any actions taken…" required></textarea>
+              <p class="form-hint">The more detail you provide, the more effectively we can investigate.</p>
+            </div>
+
+            <!-- Section 4: Evidence -->
+            <div class="form-section-title">Supporting Evidence <span class="opt" style="font-size:12px;color:var(--gray-500);font-weight:400;text-transform:none;letter-spacing:0">(optional but helpful)</span></div>
+
+            <div class="upload-zone" id="uploadZone">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag &amp; drop files here, or <strong>click to browse</strong></p>
+              <small>Screenshots, call logs, SMS transcripts, photos · Max 10MB per file · PDF, JPG, PNG, MP3 accepted</small>
+            </div>
+
+            <!-- Consent & Submit -->
+            <div style="margin-top:24px">
+              <div class="form-check">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I confirm that the information provided is accurate to the best of my knowledge, and I consent to BOCRA using this information for regulatory investigation purposes. <a href="#">Privacy Policy</a></label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" id="updates" name="updates">
+                <label for="updates">I would like to receive updates on the progress of this report via email (if contact details were provided above).</label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <div class="form-actions-note"><i class="fas fa-lock"></i> Your report is encrypted and confidential</div>
+              <button type="submit" class="btn btn-danger" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Submit Report
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">2,840+</div>
+          <div class="stat-label">Scam reports received<br>in 2025</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">87%</div>
+          <div class="stat-label">Cases resolved or actioned<br>within 30 days</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">42</div>
+          <div class="stat-label">Enforcement actions taken<br>against operators in 2025</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3 days</div>
+          <div class="stat-label">Average initial response<br>time for reports</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT ALERTS -->
+  <section class="alerts-section">
+    <div class="container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <div class="section-eyebrow red">Current Threats</div>
+          <h2 style="font-size:28px">Recent Scam Alerts</h2>
+        </div>
+        <a href="news.html" class="btn btn-ghost">View all alerts <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="alert-cards">
+
+        <div class="alert-card">
+          <div class="alert-card-icon"><i class="fas fa-user-secret"></i></div>
+          <div class="alert-card-body">
+            <h4>Fake BOCRA Officials Demanding Licence Renewal Fees via Mobile Money</h4>
+            <p>Fraudsters are calling consumers posing as BOCRA inspectors and demanding immediate payment for "licence renewals" via Orange Money or MyZaka. BOCRA does not collect fees via mobile money. Do not pay and report the call immediately.</p>
+            <div class="alert-card-meta">
+              <span class="alert-date"><i class="far fa-calendar"></i> 20 March 2026</span>
+              <span class="badge badge-red">Impersonation</span>
+              <span class="badge badge-gold">High Priority</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-card">
+          <div class="alert-card-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="alert-card-body">
+            <h4>Surge in SIM-Swap Attacks Targeting Mobile Banking Customers</h4>
+            <p>BOCRA and mobile operators have recorded a significant increase in SIM-swap fraud targeting customers of Botswana's major banks. Consumers are urged to contact their bank and network operator immediately if they experience unexplained loss of mobile service.</p>
+            <div class="alert-card-meta">
+              <span class="alert-date"><i class="far fa-calendar"></i> 12 March 2026</span>
+              <span class="badge badge-red">SIM-Swap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-card">
+          <div class="alert-card-icon"><i class="fas fa-sms"></i></div>
+          <div class="alert-card-body">
+            <h4>Warning: Smishing Campaign Targeting BTC Internet Service Customers</h4>
+            <p>Customers of BTC's fibre broadband service are receiving fraudulent SMS messages claiming their account has been suspended and directing them to fake login pages designed to steal credentials. Do not click any links.</p>
+            <div class="alert-card-meta">
+              <span class="alert-date"><i class="far fa-calendar"></i> 5 March 2026</span>
+              <span class="badge badge-red">Smishing</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2>Not sure if you've been scammed?</h2>
+          <p>Our consumer affairs team can help you assess your situation, advise on next steps, and connect you with the right authorities. Don't hesitate to reach out.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="tel:+26739577755" class="btn btn-gold"><i class="fas fa-phone-alt"></i> Call Consumer Affairs</a>
+          <a href="mailto:complaints@bocra.org.bw" class="btn btn-outline"><i class="fas fa-envelope"></i> Email Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <div class="footer-logo-mark">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
+                  <path d="M12 5v7l4 2.5" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="footer-logo-text">BOCRA</div>
+                <div class="footer-logo-sub">Botswana Communications Regulatory Authority</div>
+              </div>
+            </div>
+            <p>Regulating Botswana's communications sector in the public interest — ensuring access, innovation, and consumer protection for all.</p>
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Quick links</h4>
+            <ul>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> About BOCRA</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Board &amp; Leadership</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Licensing</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Publications</a></li>
+              <li><a href="news.html"><i class="fas fa-chevron-right"></i> News &amp; Updates</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Consumer Services</h4>
+            <ul>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> File a Complaint</a></li>
+              <li><a href="scam-reporting.html"><i class="fas fa-chevron-right"></i> Report a Scam</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Know Your Rights</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Licence Verification</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Consumer Education</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> e-Services Portal</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact us</h4>
+            <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><p>Plot 206, Independence Avenue<br>Gaborone, Botswana</p></div>
+            <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><p>+267 395 7755</p></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope"></i><p>info@bocra.org.bw<br>complaints@bocra.org.bw</p></div>
+            <div class="footer-contact-item"><i class="fas fa-clock"></i><p>Monday – Friday<br>8:00 AM – 5:00 PM</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p>© 2026 Botswana Communications Regulatory Authority. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUCCESS MODAL -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-modal">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h2>Report Submitted</h2>
+      <p>Thank you for helping protect Botswana's consumers. Your report has been received by BOCRA's Consumer Affairs team.</p>
+      <div class="success-ref" id="successRef">Reference: BOCRA-SCM-2026-XXXX</div>
+      <p style="font-size:13px">Please save your reference number. We will respond within <strong>3 business days</strong> if you provided contact details.</p>
+      <button class="btn btn-navy" style="margin-top:20px;width:100%;justify-content:center" onclick="document.getElementById('successOverlay').classList.remove('show')">
+        <i class="fas fa-times"></i> Close
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      hamburger.innerHTML = mobileNav.classList.contains('open')
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Scam type selector
+    document.querySelectorAll('.scam-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scam-type-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // Anonymous toggle
+    const anonymousCheck = document.getElementById('anonymous');
+    const reporterFields = document.getElementById('reporterFields');
+    anonymousCheck.addEventListener('change', () => {
+      reporterFields.style.opacity = anonymousCheck.checked ? '.4' : '1';
+      reporterFields.style.pointerEvents = anonymousCheck.checked ? 'none' : 'auto';
+    });
+
+    // Upload zone
+    const uploadZone = document.getElementById('uploadZone');
+    uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--navy)'; });
+    uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = 'var(--gray-100)'; });
+    uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--gray-100)'; const count = e.dataTransfer.files.length; uploadZone.querySelector('p').innerHTML = `<strong>${count} file(s) ready to upload</strong>`; });
+    uploadZone.addEventListener('click', () => { const inp = document.createElement('input'); inp.type='file'; inp.multiple=true; inp.accept='.pdf,.jpg,.jpeg,.png,.mp3'; inp.onchange = () => { if(inp.files.length) uploadZone.querySelector('p').innerHTML = `<strong>${inp.files.length} file(s) ready to upload</strong>`; }; inp.click(); });
+
+    // Form submit
+    document.getElementById('scamForm').addEventListener('submit', e => {
+      e.preventDefault();
+      if (!document.getElementById('consent').checked) {
+        alert('Please confirm your consent before submitting.');
+        return;
+      }
+      const ref = 'BOCRA-SCM-2026-' + String(Math.floor(Math.random() * 9000) + 1000);
+      document.getElementById('successRef').textContent = 'Reference: ' + ref;
+      document.getElementById('successOverlay').classList.add('show');
+    });
+
+    // Progress steps — update on field interaction
+    const fields = document.querySelectorAll('#reporterFields input');
+    let step1done = false;
+    fields.forEach(f => f.addEventListener('input', () => {
+      if(!step1done) {
+        step1done = true;
+        document.querySelectorAll('.form-step')[0].className = 'form-step done';
+        document.querySelectorAll('.form-step')[0].querySelector('.form-step-circle').innerHTML = '<i class="fas fa-check"></i>';
+        document.querySelectorAll('.form-step')[1].className = 'form-step active';
+        document.querySelectorAll('.step-line')[0].classList.add('done');
+      }
+    }));
+  </script>
+</body>
+</html>
