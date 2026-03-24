@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services – Botswana Communications Regulatory Authority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --navy:       #0B2D6E;
+      --navy-dark:  #071D4A;
+      --navy-mid:   #143A8C;
+      --navy-light: #1E50B0;
+      --gold:       #C9A227;
+      --gold-light: #E8C44A;
+      --gold-pale:  #FDF4DC;
+      --white:      #FFFFFF;
+      --off-white:  #F8F9FC;
+      --gray-50:    #F1F3F8;
+      --gray-100:   #E2E6EF;
+      --gray-300:   #B0BAD0;
+      --gray-500:   #6B7A99;
+      --gray-700:   #374166;
+      --text:       #1C2B4A;
+      --text-muted: #5A6A8A;
+      --success:    #0A7A4B;
+      --radius:     10px;
+      --radius-lg:  16px;
+      --shadow:     0 2px 16px rgba(11,45,110,.09);
+      --shadow-md:  0 6px 32px rgba(11,45,110,.13);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      font-weight: 500;
+      font-size: 14px;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn-navy:hover {
+      background: var(--navy-mid);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy-dark);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--gray-300);
+    }
+    .btn-ghost:hover {
+      background: var(--gray-50);
+      border-color: var(--navy);
+    }
+    
+    /* Topbar */
+    .topbar { background: var(--navy-dark); padding: 6px 0; font-size: 12px; color: rgba(255,255,255,.65); }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar-left { display: flex; align-items: center; gap: 20px; }
+    .topbar-divider { color: rgba(255,255,255,.3); }
+    .topbar a { color: rgba(255,255,255,.65); transition: color .2s; }
+    .topbar a:hover { color: var(--gold-light); }
+    .topbar-right { display: flex; align-items: center; gap: 16px; }
+    .topbar-right a { display: flex; align-items: center; }
+    
+    /* Header */
+    .header { background: var(--white); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--gray-100); box-shadow: 0 2px 12px rgba(11,45,110,.08); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-mark { width: 44px; height: 44px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .logo-text h2 { font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: .5px; margin-bottom: 2px; }
+    .logo-text p { font-size: 11px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; }
+    .nav-menu { display: flex; align-items: center; gap: 4px; }
+    .nav-menu a { font-size: 13.5px; font-weight: 500; color: var(--gray-700); padding: 6px 12px; border-radius: 6px; transition: all .18s; }
+    .nav-menu a:hover { color: var(--navy); background: var(--gray-50); }
+    .nav-menu a.active { color: var(--navy); background: var(--gray-50); }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .hamburger { display: none; background: none; border: none; font-size: 20px; color: var(--navy); cursor: pointer; }
+    .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--gray-100); padding: 16px 0; }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a { display: block; padding: 12px 0; color: var(--gray-700); font-weight: 500; border-bottom: 1px solid var(--gray-100); }
+    .mobile-nav a:last-child { border-bottom: none; }
+    
+    /* Page Hero */
+    .page-hero { background: var(--navy); position: relative; overflow: hidden; padding: 72px 0 64px; color: var(--white); }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(20,58,140,.55) 0%, transparent 55%), radial-gradient(ellipse at 5% 90%, rgba(201,162,39,.07) 0%, transparent 45%); }
+    .page-hero-pattern { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 48px 48px; }
+    .page-hero-circle { position: absolute; right: -120px; top: -120px; width: 520px; height: 520px; border: 1px solid rgba(255,255,255,.06); border-radius: 50%; }
+    .page-hero-circle2 { position: absolute; right: 40px; top: 40px; width: 260px; height: 260px; border: 1px solid rgba(255,255,255,.05); border-radius: 50%; }
+    .page-hero-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,.6); margin-bottom: 20px; }
+    .breadcrumb a { color: rgba(255,255,255,.8); }
+    .breadcrumb a:hover { color: var(--gold-light); }
+    .page-hero h1 { font-size: 48px; color: var(--white); margin-bottom: 20px; max-width: 600px; }
+    .page-hero-lead { font-size: 17px; color: rgba(255,255,255,.75); max-width: 520px; line-height: 1.7; }
+    .page-hero-aside { display: flex; flex-direction: column; gap: 12px; }
+    .hero-pill { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08); backdrop-filter: blur(10px); padding: 10px 16px; border-radius: 100px; font-size: 13px; color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.1); }
+    .hero-pill i { color: var(--gold-light); }
+    
+    /* Intro Section */
+    .intro { padding: 84px 0; background: var(--white); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .section-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 16px; }
+    .intro-content h2 { font-size: 36px; margin-bottom: 20px; }
+    .intro-content p { font-size: 16px; color: var(--text-muted); line-height: 1.8; }
+    .intro-visual { position: relative; }
+    .intro-img-frame { background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 40px; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; }
+    .intro-img-icon { text-align: center; }
+    .intro-img-icon i { font-size: 64px; color: var(--navy); margin-bottom: 16px; }
+    .intro-img-icon p { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    
+    /* Mandate/Services Section */
+    .mandate-areas { padding: 84px 0; background: var(--white); }
+    .mandate-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+    .mandate-item { border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 28px 26px; display: flex; gap: 20px; align-items: flex-start; transition: all .25s; }
+    .mandate-item:hover { box-shadow: var(--shadow-md); border-color: rgba(11,45,110,.15); transform: translateY(-4px); }
+    .mandate-icon-lg { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .bg-blue-pale { background: #EEF4FF; color: var(--navy); }
+    .bg-gold-pale { background: var(--gold-pale); color: var(--gold); }
+    .bg-green-pale { background: #E8F5E9; color: var(--success); }
+    .bg-purple-pale { background: #F3E5F5; color: #7B1FA2; }
+    .text-blue { color: var(--navy); }
+    .text-gold { color: var(--gold); }
+    .text-green { color: var(--success); }
+    .text-purple { color: #7B1FA2; }
+    .mandate-item h3 { font-size: 18px; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .mandate-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    
+    /* Application Process */
+    .step-card { background: var(--white); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--gray-100); transition: all .25s; }
+    .step-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .step-number { width: 64px; height: 64px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--navy); margin: 0 auto 20px; border: 2px solid var(--gold); }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); }
+    .font-semibold { font-weight: 600; }
+    .mb-3 { margin-bottom: 12px; }
+    .text-sm { font-size: 14px; }
+    
+    /* Fee Structure */
+    .fee-structure { padding: 84px 0; background: var(--white); }
+    .fee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .fee-card { border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 32px; text-align: center; transition: all .25s; }
+    .fee-card:hover { box-shadow: var(--shadow-md); border-color: rgba(11,45,110,.15); }
+    .fee-card.featured { border-color: var(--gold); background: var(--gold-pale); }
+    .fee-icon { width: 64px; height: 64px; background: var(--gray-50); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; color: var(--navy); }
+    .fee-card.featured .fee-icon { background: var(--gold); color: var(--navy-dark); }
+    .fee-amount { font-size: 36px; font-weight: 700; color: var(--navy); font-family: 'Playfair Display', serif; margin-bottom: 8px; }
+    .fee-amount span { font-size: 14px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .fee-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: var(--navy); }
+    .fee-list { list-style: none; text-align: left; margin-top: 20px; }
+    .fee-list li { padding: 8px 0; border-bottom: 1px solid var(--gray-100); font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .fee-list li:last-child { border-bottom: none; }
+    .fee-list li i { color: var(--success); font-size: 12px; }
+    
+    /* Quick Links */
+    .quick-links { padding: 64px 0; background: var(--gray-50); }
+    .links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    .link-card { background: var(--white); padding: 24px; border-radius: var(--radius); border: 1px solid var(--gray-100); display: flex; align-items: center; gap: 16px; transition: all .2s; }
+    .link-card:hover { background: var(--navy); color: var(--white); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .link-card:hover h4 { color: var(--white); }
+    .link-card:hover p { color: rgba(255,255,255,.7); }
+    .link-icon { width: 48px; height: 48px; background: var(--gray-50); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--navy); flex-shrink: 0; }
+    .link-card:hover .link-icon { background: rgba(255,255,255,.2); color: var(--white); }
+    .link-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; }
+    .link-card p { font-size: 12px; color: var(--text-muted); }
+    
+    /* CTA Banner */
+    .cta-banner { padding: 80px 0; background: var(--navy); position: relative; overflow: hidden; }
+    .cta-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(201,162,39,.15) 0%, transparent 50%); }
+    .cta-banner-pattern { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 60px 60px; opacity: .5; }
+    .cta-content { position: relative; z-index: 1; text-align: center; max-width: 700px; margin: 0 auto; }
+    .cta-content h2 { font-size: 40px; color: var(--white); margin-bottom: 20px; }
+    .cta-content p { font-size: 17px; color: rgba(255,255,255,.7); margin-bottom: 32px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    
+    /* Footer */
+    .footer { background: var(--navy-dark); color: rgba(255,255,255,.7); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand h3 { font-size: 20px; color: var(--white); margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; line-height: 1.8; margin-bottom: 24px; color: rgba(255,255,255,.6); }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 36px; height: 36px; background: rgba(255,255,255,.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--white); transition: all .2s; }
+    .footer-social a:hover { background: var(--gold); color: var(--navy-dark); }
+    .footer-column h4 { font-size: 14px; color: var(--white); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .footer-column ul { list-style: none; }
+    .footer-column li { margin-bottom: 12px; }
+    .footer-column a { font-size: 14px; color: rgba(255,255,255,.6); transition: color .2s; }
+    .footer-column a:hover { color: var(--gold-light); }
+    .footer-contact li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 14px; color: rgba(255,255,255,.6); }
+    .footer-contact i { color: var(--gold); margin-top: 4px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,.5); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,.5); }
+    .footer-bottom-links a:hover { color: var(--gold-light); }
+    
+    /* Responsive */
+    @media (max-width: 1024px) { 
+      .intro-grid { grid-template-columns: 1fr; } 
+      .mandate-row { grid-template-columns: 1fr; }
+      .fee-grid { grid-template-columns: repeat(2, 1fr); }
+      .links-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .page-hero h1 { font-size: 36px; }
+    }
+    @media (max-width: 768px) { 
+      .nav-menu { display: none; } 
+      .hamburger { display: block; }
+      .page-hero-inner { flex-direction: column; align-items: flex-start; }
+      .page-hero-aside { flex-direction: row; flex-wrap: wrap; }
+      .fee-grid { grid-template-columns: 1fr; }
+      .links-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .cta-content h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:5px"></i> Plot 206, Gaborone, Botswana</span>
+        <span class="topbar-divider">|</span>
+        <a href="tel:+2673957755"><i class="fas fa-phone-alt" style="margin-right:5px"></i>+267 395 7755</a>
+        <span class="topbar-divider">|</span>
+        <a href="mailto:info@bocra.org.bw"><i class="fas fa-envelope" style="margin-right:5px"></i>info@bocra.org.bw</a>
+      </div>
+      <div class="topbar-right">
+        <a href="#">e-Services Portal</a>
+        <span class="topbar-divider">|</span>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
+              <path d="M12 5v7l4 2.5" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h2>BOCRA</h2>
+            <p>Botswana Communications Regulatory Authority</p>
+          </div>
+        </a>
+        <nav class="nav-menu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html" class="active">Services</a>
+          <a href="#">Licensing</a>
+          <a href="#">Publications</a>
+          <a href="#">News</a>
+          <a href="#">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="#" class="btn btn-navy"><i class="fas fa-file-alt"></i> Apply for License</a>
+        </div>
+        <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="container">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="#">Licensing</a>
+        <a href="#">Publications</a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-pattern"></div>
+    <div class="page-hero-circle"></div>
+    <div class="page-hero-circle2"></div>
+    <div class="container">
+      <div class="page-hero-inner">
+        <div>
+          <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+            <span>Our Services</span>
+          </div>
+          <h1>Regulating with purpose.<br>Delivering with excellence.</h1>
+          <p class="page-hero-lead">From licensing to consumer protection, spectrum management to digital inclusion — discover the full range of services BOCRA provides to keep Botswana connected.</p>
+        </div>
+        <div class="page-hero-aside">
+          <div class="hero-pill"><i class="fas fa-shield-alt"></i><span>Licensing & Regulation</span></div>
+          <div class="hero-pill"><i class="fas fa-wifi"></i><span>Spectrum Management</span></div>
+          <div class="hero-pill"><i class="fas fa-users"></i><span>Consumer Protection</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO SPLIT -->
+  <section class="intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-visual">
+          <div class="intro-img-frame">
+            <div class="intro-img-icon">
+              <i class="fas fa-broadcast-tower"></i>
+              <p>BOCRA Services<br>Gaborone</p>
+            </div>
+          </div>
+        </div>
+        <div class="intro-content">
+          <div class="section-eyebrow">What we offer</div>
+          <h2>Comprehensive regulatory services for Botswana's communications sector</h2>
+          <p>BOCRA provides licensing, spectrum management, consumer protection, type approval, postal regulation, and universal access services to ensure fair competition, quality, and inclusion across Botswana.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
+            <a href="#application" class="btn btn-navy"><i class="fas fa-file-alt"></i> Start an Application</a>
+            <a href="#" class="btn btn-ghost"><i class="fas fa-download"></i> Download Forms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE SERVICES GRID -->
+  <section class="mandate-areas" id="services">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:60px">
+        <div class="section-eyebrow">Core Services</div>
+        <h2 style="font-size:36px;">Our Regulatory Mandate in Action</h2>
+      </div>
+      <div class="mandate-row">
+        <div class="mandate-item">
+          <div class="mandate-icon-lg bg-blue-pale text-blue"><i class="fas fa-broadcast-tower"></i></div>
+          <div>
+            <h3>Telecommunications Licensing</h3>
+            <p>Licensing and regulation of mobile, fixed-line, and data service providers. Setting interconnection rates and quality of service standards.</p>
+          </div>
+        </div>
+        <div class="mandate-item">
+          <div class="mandate-icon-lg bg-gold-pale text-gold"><i class="fas fa-satellite-dish"></i></div>
+          <div>
+            <h3>Broadcasting Services</h3>
+            <p>Oversight of radio and television broadcasters. Content standards, licensing, and ensuring diverse Botswana-relevant programming.</p>
+          </div>
+        </div>
+        <div class="mandate-item">
+          <div class="mandate-icon-lg" style="background:#FEF0F0;color:#9B1B1B;"><i class="fas fa-wave-square"></i></div>
+          <div>
+            <h3>Spectrum Management</h3>
+            <p>Management of Botswana's radio frequency spectrum. Licensing, monitoring, and interference resolution.</p>
+          </div>
+        </div>
+        <div class="mandate-item">
+          <div class="mandate-icon-lg bg-green-pale text-green"><i class="fas fa-shield-alt"></i></div>
+          <div>
+            <h3>Consumer Protection</h3>
+            <p>Handling complaints, publishing quality benchmarks, and ensuring operators meet obligations to Batswana consumers.</p>
+          </div>
+        </div>
+        <div class="mandate-item">
+          <div class="mandate-icon-lg bg-purple-pale text-purple"><i class="fas fa-mobile-alt"></i></div>
+          <div>
+            <h3>Type Approval</h3>
+            <p>Certification of communications equipment for use in Botswana. Mandatory for all imported and sold devices.</p>
+          </div>
+        </div>
+        <div class="mandate-item">
+          <div class="mandate-icon-lg bg-gold-pale text-gold"><i class="fas fa-envelope-open-text"></i></div>
+          <div>
+            <h3>Postal Services</h3>
+            <p>Regulation of Botswana Post and private courier operators. Universal postal service obligations and quality standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION PROCESS -->
+  <section id="application" class="intro" style="background:var(--gray-50);padding:100px 0;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:60px">
+        <div class="section-eyebrow">How to apply</div>
+        <h2 style="font-size:32px;">Application Process</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;">
+        <div class="step-card text-center">
+          <div class="step-number">01</div>
+          <h4 class="font-semibold mb-3">Submit Application</h4>
+          <p class="text-sm text-muted">Complete the required form with supporting documents and pay the initial fee.</p>
+        </div>
+        <div class="step-card text-center">
+          <div class="step-number">02</div>
+          <h4 class="font-semibold mb-3">Assessment</h4>
+          <p class="text-sm text-muted">BOCRA reviews completeness, compliance, and conducts background checks.</p>
+        </div>
+        <div class="step-card text-center">
+          <div class="step-number">03</div>
+          <h4 class="font-semibold mb-3">Inspection</h4>
+          <p class="text-sm text-muted">Technical inspection and verification of facilities and equipment.</p>
+        </div>
+        <div class="step-card text-center">
+          <div class="step-number">04</div>
+          <h4 class="font-semibold mb-3">Issuance</h4>
+          <p class="text-sm text-muted">Final decision, license issuance, and entry into BOCRA registry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEE STRUCTURE -->
+  <section class="fee-structure">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:60px">
+        <div class="section-eyebrow">Licensing Fees</div>
+        <h2 style="font-size:36px;">Fee Structure 2025/2026</h2>
+        <p style="color:var(--text-muted);margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto;">Transparent fee structure for all licensing categories. All fees are payable in Botswana Pula (BWP).</p>
+      </div>
+      <div class="fee-grid">
+        <div class="fee-card">
+          <div class="fee-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="fee-amount">P5,000 <span>/ year</span></div>
+          <div class="fee-title">Individual License</div>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">For individual practitioners and small operators</p>
+          <ul class="fee-list">
+            <li><i class="fas fa-check"></i> Application fee: P500</li>
+            <li><i class="fas fa-check"></i> Processing: 30 days</li>
+            <li><i class="fas fa-check"></i> Annual renewal required</li>
+            <li><i class="fas fa-check"></i> Basic compliance reporting</li>
+          </ul>
+        </div>
+        <div class="fee-card featured">
+          <div class="fee-icon"><i class="fas fa-building"></i></div>
+          <div class="fee-amount">P25,000 <span>/ year</span></div>
+          <div class="fee-title">Class License</div>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">For established telecommunications operators</p>
+          <ul class="fee-list">
+            <li><i class="fas fa-check"></i> Application fee: P2,500</li>
+            <li><i class="fas fa-check"></i> Processing: 60-90 days</li>
+            <li><i class="fas fa-check"></i> Full spectrum access</li>
+            <li><i class="fas fa-check"></i> Priority support</li>
+          </ul>
+        </div>
+        <div class="fee-card">
+          <div class="fee-icon"><i class="fas fa-satellite"></i></div>
+          <div class="fee-amount">P50,000 <span>/ year</span></div>
+          <div class="fee-title">Broadcast License</div>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;">For radio and television broadcasters</p>
+          <ul class="fee-list">
+            <li><i class="fas fa-check"></i> Application fee: P5,000</li>
+            <li><i class="fas fa-check"></i> Processing: 90 days</li>
+            <li><i class="fas fa-check"></i> Content compliance review</li>
+            <li><i class="fas fa-check"></i> Quarterly reporting</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="#" class="btn btn-ghost"><i class="fas fa-download"></i> Download Complete Fee Schedule</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK LINKS -->
+  <section class="quick-links">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px">
+        <div class="section-eyebrow">Resources</div>
+        <h2 style="font-size:32px;">Quick Links</h2>
+      </div>
+      <div class="links-grid">
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-file-pdf"></i></div>
+          <div>
+            <h4>Application Forms</h4>
+            <p>Download all licensing forms</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-book"></i></div>
+          <div>
+            <h4>Legislation</h4>
+            <p>Communications Regulatory Act</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-gavel"></i></div>
+          <div>
+            <h4>Guidelines</h4>
+            <p>Regulatory frameworks & policies</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-question-circle"></i></div>
+          <div>
+            <h4>FAQs</h4>
+            <p>Common licensing questions</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-calendar-alt"></i></div>
+          <div>
+            <h4>Processing Times</h4>
+            <p>Current application timelines</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-comments"></i></div>
+          <div>
+            <h4>Complaints</h4>
+            <p>Submit a service complaint</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-chart-line"></i></div>
+          <div>
+            <h4>Market Data</h4>
+            <p>Industry statistics & reports</p>
+          </div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Contact Us</h4>
+            <p>Get in touch with BOCRA</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner-pattern"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to get licensed?</h2>
+        <p>Start your application today and join Botswana's regulated communications sector. Our team is ready to guide you through every step of the process.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-gold"><i class="fas fa-file-alt"></i> Start Application</a>
+          <a href="#" class="btn btn-ghost" style="color:var(--white);border-color:rgba(255,255,255,.3);"><i class="fas fa-phone"></i> Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Botswana Communications Regulatory Authority</h3>
+          <p>Empowering connectivity, ensuring fairness, and protecting consumers across Botswana's communications landscape.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About BOCRA</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="#">Licensing</a></li>
+            <li><a href="#">Publications</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Telecommunications</a></li>
+            <li><a href="#">Broadcasting</a></li>
+            <li><a href="#">Spectrum Management</a></li>
+            <li><a href="#">Consumer Protection</a></li>
+            <li><a href="#">Type Approval</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-map-marker-alt"></i> Plot 206/207, Fairscape Office Park, Gaborone</li>
+            <li><i class="fas fa-phone"></i> +267 395 7755</li>
+            <li><i class="fas fa-envelope"></i> info@bocra.org.bw</li>
+            <li><i class="fas fa-clock"></i> Mon - Fri: 08:00 - 16:30</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Botswana Communications Regulatory Authority. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      const icon = hamburger.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+  </script>
+</body>
+</html>
