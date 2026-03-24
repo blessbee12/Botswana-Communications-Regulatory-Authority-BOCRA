@@ -1,189 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOCRA – Botswana Communications Regulatory Authority</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* ===== PALETTE ===== */
+        /* Purple: #4A2C70 | Teal: #1E3A8A→ repurposed as #1A5C6B | Orange: #F97316 | Green: #4D7C0F | Cream: #F5F5F5 | Pink: #F9A8D4 */
+
         :root {
-            --navy: #0B2555;
-            --navy-mid: #123580;
-            --navy-light: #1A4BAD;
-            --gold: #C9A227;
-            --gold-light: #F0C855;
-            --gold-pale: #FBF3DC;
-            --white: #FFFFFF;
-            --off-white: #F6F8FC;
-            --gray-100: #EEF1F7;
-            --gray-200: #D6DCE9;
-            --gray-400: #8A96B0;
-            --gray-600: #4A5568;
-            --gray-800: #1E2535;
-            --text: #1A2238;
-            --text-muted: #5A677E;
-            --success: #0F6E56;
-            --success-light: #E3F5EE;
-            --warning: #854F0B;
-            --warning-light: #FEF3E0;
-            --danger: #993C1D;
-            --danger-light: #FCF0EE;
+            --purple:   #4A2C70;
+            --purple-mid: #5E3A8A;
+            --purple-light: #7C52A8;
+            --teal:     #1A5C6B;
+            --teal-mid: #1E7080;
+            --teal-light: #2A8FA0;
+            --orange:   #F97316;
+            --orange-dark: #D45E0A;
+            --green:    #4D7C0F;
+            --green-light: #6A9F18;
+            --cream:    #F5F5F5;
+            --pink:     #F9A8D4;
+            --pink-deep: #E879A0;
+
+            /* Light theme surfaces */
+            --bg:         #FFFFFF;
+            --bg-alt:     #F5F5F5;
+            --bg-card:    #FFFFFF;
+            --border:     rgba(74,44,112,0.12);
+            --border-mid: rgba(74,44,112,0.2);
+            --text:       #1A0F2E;
+            --text-mid:   #4A3B5E;
+            --text-muted: #7A6B8A;
+            --topbar-bg:  #4A2C70;
+            --header-bg:  #FFFFFF;
+            --header-shadow: 0 2px 12px rgba(74,44,112,0.10);
+            --hero-bg:    #4A2C70;
+            --footer-bg:  #1A0F2E;
+
+            --shadow-sm: 0 1px 4px rgba(74,44,112,0.08);
+            --shadow-md: 0 4px 16px rgba(74,44,112,0.12);
+            --shadow-lg: 0 12px 40px rgba(74,44,112,0.18);
+            --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+
             --radius-sm: 6px;
             --radius-md: 10px;
             --radius-lg: 16px;
             --radius-xl: 24px;
-            --shadow-sm: 0 1px 3px rgba(11,37,85,0.08), 0 1px 2px rgba(11,37,85,0.05);
-            --shadow-md: 0 4px 12px rgba(11,37,85,0.10), 0 2px 6px rgba(11,37,85,0.06);
-            --shadow-lg: 0 16px 40px rgba(11,37,85,0.14), 0 4px 14px rgba(11,37,85,0.08);
-            --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg:         #0F0A1A;
+            --bg-alt:     #1A1228;
+            --bg-card:    #1E1630;
+            --border:     rgba(249,163,212,0.10);
+            --border-mid: rgba(249,163,212,0.18);
+            --text:       #F0EAF8;
+            --text-mid:   #C4B8D8;
+            --text-muted: #9080AA;
+            --topbar-bg:  #0F0A1A;
+            --header-bg:  #130D22;
+            --header-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            --hero-bg:    #13082A;
+            --footer-bg:  #080510;
+
+            --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'IBM Plex Sans', sans-serif;
             font-size: 16px;
             line-height: 1.65;
             color: var(--text);
-            background: var(--white);
+            background: var(--bg);
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+        h1,h2,h3,h4 { font-family: 'Bitter', serif; line-height: 1.2; }
         a { text-decoration: none; color: inherit; }
         img { display: block; max-width: 100%; }
 
-        /* ===== UTILITY ===== */
         .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
         .section-tag {
-            display: inline-flex; align-items: center; gap: 7px;
-            font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
-            letter-spacing: 1.4px; text-transform: uppercase;
-            color: var(--gold); margin-bottom: 10px;
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'IBM Plex Sans', sans-serif; font-size: 11px; font-weight: 600;
+            letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--orange); margin-bottom: 10px;
         }
         .section-tag::before {
-            content: ''; width: 18px; height: 2px; background: var(--gold); border-radius: 2px;
+            content: ''; width: 20px; height: 2px; background: var(--orange); border-radius: 2px;
         }
         .section-heading {
-            font-size: clamp(26px, 4vw, 36px); color: var(--navy); margin-bottom: 12px;
+            font-size: clamp(24px, 3.5vw, 34px); color: var(--text); margin-bottom: 12px;
         }
         .section-sub {
-            font-size: 15px; color: var(--text-muted); max-width: 520px; line-height: 1.7; margin-bottom: 40px;
+            font-size: 15px; color: var(--text-muted); max-width: 520px; line-height: 1.75; margin-bottom: 40px;
         }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            width: 44px; height: 24px;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 12px; cursor: pointer;
+            position: relative; transition: all var(--transition);
+            flex-shrink: 0;
+        }
+        .theme-toggle::after {
+            content: ''; position: absolute;
+            top: 2px; left: 2px;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: white; transition: transform var(--transition);
+        }
+        [data-theme="dark"] .theme-toggle::after { transform: translateX(20px); }
+        [data-theme="dark"] .theme-toggle { background: rgba(249,163,212,0.2); border-color: rgba(249,163,212,0.4); }
+        .toggle-label { font-size: 11px; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
 
         /* ===== TOPBAR ===== */
         .topbar {
-            background: var(--navy);
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-            padding: 8px 0;
+            background: var(--topbar-bg);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 8px 0; transition: background 0.3s ease;
         }
-        .topbar-inner {
-            display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
-        }
-        .topbar-left {
-            display: flex; gap: 24px; align-items: center;
-        }
-        .topbar-left a, .topbar-right a {
-            font-size: 12px; color: rgba(255,255,255,0.6);
+        .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .topbar-left { display: flex; gap: 20px; align-items: center; }
+        .topbar-left a {
+            font-size: 12px; color: rgba(255,255,255,0.55);
             display: flex; align-items: center; gap: 5px;
             transition: color var(--transition);
         }
-        .topbar-left a:hover, .topbar-right a:hover { color: var(--gold-light); }
-        .topbar-right { display: flex; gap: 16px; align-items: center; }
+        .topbar-left a:hover { color: var(--orange); }
+        .topbar-right { display: flex; gap: 14px; align-items: center; }
+        .topbar-social { display: flex; gap: 6px; }
         .topbar-social a {
             width: 26px; height: 26px; border-radius: 50%;
             background: rgba(255,255,255,0.08);
             display: inline-flex; align-items: center; justify-content: center;
-            font-size: 11px;
+            font-size: 11px; color: rgba(255,255,255,0.55);
+            transition: all var(--transition);
         }
-        .topbar-social { display: flex; gap: 6px; }
+        .topbar-social a:hover { background: var(--orange); color: white; }
 
         /* ===== HEADER ===== */
         .header {
-            background: var(--white);
+            background: var(--header-bg);
             position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid var(--gray-200);
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow var(--transition);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--header-shadow);
+            transition: background 0.3s ease, box-shadow var(--transition);
         }
-        .header.scrolled { box-shadow: var(--shadow-md); }
         .header-inner {
             display: flex; justify-content: space-between; align-items: center;
             height: 72px; gap: 20px;
         }
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo-mark {
-            width: 46px; height: 46px; background: var(--navy);
+            width: 46px; height: 46px;
+            background: linear-gradient(135deg, var(--purple), var(--teal));
             border-radius: var(--radius-md);
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
             position: relative; overflow: hidden;
         }
         .logo-mark::after {
             content: ''; position: absolute; bottom: -4px; right: -4px;
-            width: 18px; height: 18px; background: var(--gold); border-radius: 50%;
+            width: 16px; height: 16px; background: var(--orange); border-radius: 50%;
         }
         .logo-mark svg { position: relative; z-index: 1; }
         .logo-text { display: flex; flex-direction: column; }
         .logo-acronym {
-            font-family: 'DM Serif Display', serif;
-            font-size: 20px; line-height: 1; color: var(--navy); letter-spacing: 1px;
+            font-family: 'Bitter', serif; font-size: 20px; line-height: 1;
+            color: var(--purple); letter-spacing: 1px;
         }
-        .logo-tagline { font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.2px; margin-top: 1px; }
-        nav { display: flex; align-items: center; gap: 4px; }
+        [data-theme="dark"] .logo-acronym { color: #C4A8E8; }
+        .logo-tagline { font-size: 10px; color: var(--text-muted); letter-spacing: 0.2px; margin-top: 1px; }
+
+        nav { display: flex; align-items: center; gap: 2px; }
         nav a {
-            font-size: 14px; font-weight: 500; color: var(--text-muted);
-            padding: 8px 13px; border-radius: var(--radius-sm);
+            font-size: 13.5px; font-weight: 500; color: var(--text-muted);
+            padding: 8px 12px; border-radius: var(--radius-sm);
             transition: all var(--transition); white-space: nowrap;
         }
-        nav a:hover { color: var(--navy); background: var(--gray-100); }
-        nav a.active { color: var(--navy); background: var(--gray-100); font-weight: 600; }
+        nav a:hover { color: var(--purple); background: rgba(74,44,112,0.07); }
+        [data-theme="dark"] nav a:hover { color: #C4A8E8; background: rgba(196,168,232,0.08); }
+        nav a.active { color: var(--purple); background: rgba(74,44,112,0.09); font-weight: 600; }
+        [data-theme="dark"] nav a.active { color: #C4A8E8; background: rgba(196,168,232,0.1); }
+
         .header-actions { display: flex; gap: 10px; align-items: center; }
+
         .btn {
             display: inline-flex; align-items: center; gap: 7px;
             padding: 10px 20px; border-radius: var(--radius-md);
-            font-size: 14px; font-weight: 600;
+            font-size: 13.5px; font-weight: 600;
             cursor: pointer; border: none; transition: all var(--transition);
-            white-space: nowrap; font-family: 'DM Sans', sans-serif;
+            white-space: nowrap; font-family: 'IBM Plex Sans', sans-serif;
         }
-        .btn-primary { background: var(--navy); color: var(--white); }
-        .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-        .btn-gold { background: var(--gold); color: #1A1000; }
-        .btn-gold:hover { background: #b8911e; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,162,39,0.35); }
-        .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-200); }
-        .btn-outline:hover { border-color: var(--navy); background: var(--gray-100); }
-        .btn-ghost { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
-        .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+        .btn-primary { background: var(--purple); color: white; }
+        .btn-primary:hover { background: var(--purple-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .btn-orange { background: var(--orange); color: white; }
+        .btn-orange:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(249,115,22,0.35); }
+        .btn-teal { background: var(--teal); color: white; }
+        .btn-teal:hover { background: var(--teal-mid); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,92,107,0.35); }
+        .btn-outline {
+            background: transparent; color: var(--purple);
+            border: 1.5px solid var(--border-mid);
+        }
+        .btn-outline:hover { border-color: var(--purple); background: rgba(74,44,112,0.06); }
+        [data-theme="dark"] .btn-outline { color: #C4A8E8; border-color: rgba(196,168,232,0.25); }
+        [data-theme="dark"] .btn-outline:hover { background: rgba(196,168,232,0.08); border-color: rgba(196,168,232,0.4); }
+        .btn-ghost { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.25); }
+        .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-        .mobile-menu { display: none; }
+        .mobile-menu { display: none; flex-direction: column; padding: 12px 0 16px; gap: 2px; }
+        .mobile-menu a {
+            padding: 10px 14px; border-radius: var(--radius-sm);
+            font-size: 15px; font-weight: 500; color: var(--text-muted);
+            transition: all var(--transition);
+        }
+        .mobile-menu a:hover { background: rgba(74,44,112,0.07); color: var(--purple); }
+        .mobile-menu.open { display: flex; }
+
+        /* ===== NOTICE BAR ===== */
+        .notice-bar {
+            background: linear-gradient(90deg, rgba(249,115,22,0.08), rgba(77,124,15,0.06));
+            border-bottom: 1px solid rgba(249,115,22,0.2);
+            padding: 11px 0;
+            transition: background 0.3s ease;
+        }
+        [data-theme="dark"] .notice-bar { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.15); }
+        .notice-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .notice-tag {
+            background: var(--orange); color: white;
+            font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+            padding: 3px 10px; border-radius: 4px; flex-shrink: 0;
+        }
+        .notice-text { font-size: 13px; color: var(--text-mid); flex: 1; }
+        .notice-link { font-size: 13px; font-weight: 600; color: var(--orange); display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .notice-link:hover { gap: 8px; }
 
         /* ===== HERO ===== */
         .hero {
-            background: var(--navy);
+            background: var(--hero-bg);
             position: relative; overflow: hidden;
             padding: 88px 0 72px;
+            transition: background 0.3s ease;
         }
-        .hero-bg {
-            position: absolute; inset: 0; pointer-events: none; z-index: 0;
+        .hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+        .hero-bg-orb {
+            position: absolute; border-radius: 50%; filter: blur(70px);
         }
-        .hero-bg-circle {
-            position: absolute; border-radius: 50%;
-            background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+        .hero-bg-orb.o1 {
+            width: 600px; height: 600px; top: -200px; right: -100px;
+            background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
         }
-        .hero-bg-circle.c1 { width: 700px; height: 700px; top: -300px; right: -200px; }
-        .hero-bg-circle.c2 { width: 500px; height: 500px; bottom: -200px; left: -100px; }
-        .hero-bg-lines {
+        .hero-bg-orb.o2 {
+            width: 500px; height: 500px; bottom: -150px; left: -80px;
+            background: radial-gradient(circle, rgba(26,92,107,0.25) 0%, transparent 70%);
+        }
+        .hero-bg-orb.o3 {
+            width: 300px; height: 300px; top: 50%; left: 40%;
+            background: radial-gradient(circle, rgba(249,163,212,0.08) 0%, transparent 70%);
+        }
+        .hero-grid-lines {
             position: absolute; inset: 0;
-            background-image: repeating-linear-gradient(
-                90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 80px
-            ), repeating-linear-gradient(
-                0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 80px
-            );
+            background-image:
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px),
+                repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px);
         }
         .hero-inner {
             position: relative; z-index: 1;
@@ -191,426 +285,292 @@
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(201,162,39,0.15);
-            border: 1px solid rgba(201,162,39,0.35);
-            color: var(--gold-light); font-size: 12px; font-weight: 500;
-            padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+            background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.3);
+            color: var(--orange); font-size: 11.5px; font-weight: 600;
+            padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 0.3px;
         }
-        .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-        .hero h1 {
-            font-size: clamp(32px, 5vw, 52px); color: var(--white);
-            line-height: 1.1; margin-bottom: 18px;
-        }
-        .hero h1 em { font-style: italic; color: var(--gold-light); }
-        .hero-desc { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 36px; max-width: 460px; }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+        .hero h1 { font-size: clamp(30px, 4.5vw, 50px); color: white; line-height: 1.1; margin-bottom: 18px; }
+        .hero h1 em { font-style: italic; color: var(--orange); }
+        .hero-desc { font-size: 15.5px; color: rgba(255,255,255,0.62); line-height: 1.78; margin-bottom: 36px; max-width: 460px; }
         .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-        .hero-divider {
-            width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 32px;
-        }
+        .hero-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 32px; }
         .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
-        .hero-stat {}
-        .hero-stat-num {
-            font-family: 'DM Serif Display', serif;
-            font-size: 32px; color: var(--gold-light); line-height: 1;
-        }
-        .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 3px; }
-        .hero-right { display: flex; flex-direction: column; gap: 14px; }
+        .hero-stat-num { font-family: 'Bitter', serif; font-size: 30px; color: var(--orange); line-height: 1; }
+        .hero-stat-label { font-size: 11.5px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+
+        .hero-right { display: flex; flex-direction: column; gap: 12px; }
         .hero-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius-lg);
-            padding: 20px 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: var(--radius-lg); padding: 18px 20px;
             display: flex; align-items: center; gap: 16px;
             transition: all var(--transition); cursor: pointer;
         }
-        .hero-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(201,162,39,0.4); transform: translateX(4px); }
+        .hero-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(249,115,22,0.35); transform: translateX(4px); }
         .hero-card-icon {
-            width: 46px; height: 46px; flex-shrink: 0;
+            width: 44px; height: 44px; flex-shrink: 0;
             border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
+            font-size: 17px;
         }
-        .hero-card-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
-        .hero-card-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4; }
-        .hero-card-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 13px; transition: all var(--transition); }
-        .hero-card:hover .hero-card-arrow { color: var(--gold-light); transform: translateX(3px); }
-
-        /* ===== NOTICE BAR ===== */
-        .notice-bar {
-            background: var(--gold-pale);
-            border-bottom: 1px solid rgba(201,162,39,0.25);
-            padding: 12px 0;
-        }
-        .notice-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .notice-tag {
-            background: var(--gold); color: #1A1000; font-size: 10px; font-weight: 700;
-            padding: 3px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.8px; white-space: nowrap;
-        }
-        .notice-text { font-size: 13px; color: var(--gray-800); flex: 1; }
-        .notice-link { font-size: 13px; font-weight: 600; color: var(--navy); white-space: nowrap; display: flex; align-items: center; gap: 5px; }
-        .notice-link:hover { color: var(--navy-mid); }
+        .hero-card-title { font-size: 13.5px; font-weight: 600; color: white; margin-bottom: 2px; }
+        .hero-card-desc { font-size: 11.5px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+        .hero-card-arrow { margin-left: auto; color: rgba(255,255,255,0.25); font-size: 12px; transition: all var(--transition); }
+        .hero-card:hover .hero-card-arrow { color: var(--orange); transform: translateX(3px); }
 
         /* ===== MANDATES ===== */
-        .mandates { padding: 80px 0; background: var(--white); }
-        .mandates-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-        }
+        .mandates-section { padding: 80px 0; background: var(--bg); transition: background 0.3s ease; }
+        .mandates-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
         .mandate-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            transition: all var(--transition);
-            position: relative; overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px 22px;
+            transition: all var(--transition); position: relative; overflow: hidden;
         }
-        .mandate-card::before {
+        .mandate-card::after {
             content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 3px; background: var(--gold); opacity: 0; transition: opacity var(--transition);
+            height: 3px; background: linear-gradient(90deg, var(--purple), var(--teal));
+            opacity: 0; transition: opacity var(--transition);
         }
         .mandate-card:hover { box-shadow: var(--shadow-lg); border-color: transparent; transform: translateY(-4px); }
-        .mandate-card:hover::before { opacity: 1; }
+        .mandate-card:hover::after { opacity: 1; }
         .mandate-icon-wrap {
-            width: 52px; height: 52px; border-radius: var(--radius-md);
+            width: 50px; height: 50px; border-radius: var(--radius-md);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 18px; font-size: 22px;
+            margin-bottom: 16px; font-size: 20px;
         }
-        .mandate-card h3 { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+        .mandate-card h3 { font-family: 'IBM Plex Sans', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
         .mandate-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
         .mandate-link {
-            font-size: 13px; font-weight: 600; color: var(--navy-light);
+            font-size: 13px; font-weight: 600; color: var(--teal);
             display: flex; align-items: center; gap: 5px; transition: gap var(--transition);
         }
+        [data-theme="dark"] .mandate-link { color: #4ABDD0; }
         .mandate-card:hover .mandate-link { gap: 8px; }
 
         /* ===== SERVICES ===== */
-        .services-section { padding: 80px 0; background: var(--off-white); }
-        .services-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-        }
+        .services-section { padding: 80px 0; background: var(--bg-alt); transition: background 0.3s ease; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
         .service-card {
-            background: var(--white); border: 1px solid var(--gray-200);
+            background: var(--bg-card); border: 1px solid var(--border);
             border-radius: var(--radius-lg); padding: 28px 24px;
-            display: flex; flex-direction: column;
-            transition: all var(--transition);
+            display: flex; flex-direction: column; transition: all var(--transition);
         }
         .service-card:hover { box-shadow: var(--shadow-lg); border-color: transparent; transform: translateY(-3px); }
-        .service-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-        .service-icon-wrap {
-            width: 48px; height: 48px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center; font-size: 20px;
-        }
-        .service-tag {
-            font-size: 11px; font-weight: 600; padding: 4px 10px;
-            border-radius: 20px; letter-spacing: 0.3px;
-        }
-        .service-card h3 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+        .service-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+        .service-icon-wrap { width: 46px; height: 46px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .service-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.3px; }
+        .service-card h3 { font-family: 'IBM Plex Sans', sans-serif; font-size: 15.5px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
         .service-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; flex: 1; margin-bottom: 20px; }
-        .service-card-footer { margin-top: auto; border-top: 1px solid var(--gray-100); padding-top: 16px; }
-        .service-card-link {
-            font-size: 13px; font-weight: 600; color: var(--navy-light);
-            display: flex; align-items: center; gap: 6px; transition: all var(--transition);
-        }
+        .service-card-footer { margin-top: auto; border-top: 1px solid var(--border); padding-top: 14px; }
+        .service-card-link { font-size: 13px; font-weight: 600; color: var(--purple); display: flex; align-items: center; gap: 6px; transition: all var(--transition); }
+        [data-theme="dark"] .service-card-link { color: #C4A8E8; }
         .service-card:hover .service-card-link { gap: 10px; }
-        .services-cta-row {
-            display: flex; justify-content: center; margin-top: 36px;
-        }
+        .services-cta-row { display: flex; justify-content: center; margin-top: 36px; }
 
         /* ===== STATS ===== */
         .stats-section {
             padding: 80px 0;
-            background: var(--navy);
+            background: linear-gradient(135deg, var(--purple) 0%, var(--teal) 100%);
             position: relative; overflow: hidden;
         }
         .stats-section::before {
-            content: ''; position: absolute; top: -60px; right: -60px;
-            width: 400px; height: 400px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 70%);
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px);
         }
         .stats-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-            background: rgba(255,255,255,0.06); border-radius: var(--radius-xl);
+            background: rgba(255,255,255,0.08); border-radius: var(--radius-xl);
             overflow: hidden; position: relative; z-index: 1;
         }
         .stat-item {
-            background: var(--navy); padding: 40px 32px;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.06);
-            transition: background var(--transition);
+            background: rgba(0,0,0,0.15); padding: 40px 28px; text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.06); transition: background var(--transition);
         }
-        .stat-item:hover { background: rgba(255,255,255,0.04); }
+        .stat-item:hover { background: rgba(0,0,0,0.05); }
         .stat-item:last-child { border-right: none; }
-        .stat-number {
-            font-family: 'DM Serif Display', serif;
-            font-size: 48px; color: var(--gold-light);
-            line-height: 1; margin-bottom: 8px;
-        }
-        .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
-        .stat-icon { font-size: 24px; margin-bottom: 14px; opacity: 0.4; color: var(--gold); }
+        .stat-number { font-family: 'Bitter', serif; font-size: 46px; color: var(--orange); line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .stat-icon { font-size: 22px; margin-bottom: 12px; color: rgba(255,255,255,0.3); }
 
         /* ===== LICENSING ===== */
-        .licensing-section { padding: 80px 0; background: var(--white); }
+        .licensing-section { padding: 80px 0; background: var(--bg); transition: background 0.3s ease; }
         .licensing-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 60px; }
         .licensing-visual {
-            background: var(--off-white); border: 1px solid var(--gray-200);
-            border-radius: var(--radius-xl); padding: 32px;
+            background: var(--bg-alt); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 28px;
         }
-        .license-types { display: flex; flex-direction: column; gap: 14px; }
+        .license-types { display: flex; flex-direction: column; gap: 10px; }
         .license-type-item {
-            background: var(--white); border: 1px solid var(--gray-200);
-            border-radius: var(--radius-md); padding: 16px 18px;
-            display: flex; align-items: center; gap: 14px; cursor: pointer;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 14px 16px;
+            display: flex; align-items: center; gap: 12px; cursor: pointer;
             transition: all var(--transition);
         }
-        .license-type-item:hover { border-color: var(--navy); box-shadow: var(--shadow-sm); }
-        .license-type-item.active { border-color: var(--gold); background: var(--gold-pale); }
-        .license-type-icon { width: 38px; height: 38px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-        .license-type-name { font-size: 14px; font-weight: 600; color: var(--navy); }
-        .license-type-count { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-        .license-type-arrow { margin-left: auto; color: var(--text-muted); font-size: 12px; }
+        .license-type-item:hover { border-color: var(--purple); box-shadow: var(--shadow-sm); }
+        .license-type-item.active { border-color: var(--orange); background: rgba(249,115,22,0.05); }
+        [data-theme="dark"] .license-type-item.active { background: rgba(249,115,22,0.08); }
+        .license-type-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+        .license-type-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+        .license-type-count { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
+        .license-type-arrow { margin-left: auto; color: var(--text-muted); font-size: 11px; }
 
         /* ===== CONSUMER ===== */
-        .consumer-section { padding: 80px 0; background: var(--off-white); }
+        .consumer-section { padding: 80px 0; background: var(--bg-alt); transition: background 0.3s ease; }
         .consumer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .complaint-steps { display: flex; flex-direction: column; gap: 0; }
+        .complaint-steps { display: flex; flex-direction: column; }
         .step-item {
-            display: flex; gap: 20px; padding: 20px 0;
-            border-bottom: 1px solid var(--gray-200); position: relative;
+            display: flex; gap: 18px; padding: 18px 0;
+            border-bottom: 1px solid var(--border); position: relative;
         }
         .step-item:last-child { border-bottom: none; }
         .step-num {
-            width: 36px; height: 36px; border-radius: 50%;
-            background: var(--navy); color: var(--white);
-            font-size: 13px; font-weight: 700; flex-shrink: 0;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--teal));
+            color: white; font-size: 13px; font-weight: 700; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
         }
-        .step-content h4 { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+        .step-content h4 { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
         .step-content p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
         .consumer-form-card {
-            background: var(--white); border: 1px solid var(--gray-200);
-            border-radius: var(--radius-xl); padding: 36px; box-shadow: var(--shadow-sm);
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-sm);
         }
-        .consumer-form-card h3 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-        .consumer-form-card .form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
-        .form-group { margin-bottom: 16px; }
-        .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-        .form-input, .form-select, .form-textarea {
-            width: 100%; padding: 11px 14px;
-            border: 1.5px solid var(--gray-200); border-radius: var(--radius-md);
-            font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
-            background: var(--white); transition: border-color var(--transition);
-        }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none; border-color: var(--navy-light);
-            box-shadow: 0 0 0 3px rgba(26,75,173,0.12);
-        }
-        .form-textarea { resize: vertical; min-height: 90px; }
+        .consumer-form-card h3 { font-family: 'IBM Plex Sans', sans-serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .consumer-form-card .form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; }
+        .form-group { margin-bottom: 14px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text-mid); margin-bottom: 5px; letter-spacing: 0.2px; }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 10px 13px;
+            border: 1.5px solid var(--border-mid); border-radius: var(--radius-md);
+            font-family: 'IBM Plex Sans', sans-serif; font-size: 13.5px; color: var(--text);
+            background: var(--bg); transition: border-color var(--transition);
+            outline: none;
+        }
+        .form-textarea { min-height: 90px; resize: vertical; }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--purple); }
+        .form-select option { background: var(--bg); color: var(--text); }
 
         /* ===== NEWS ===== */
-        .news-section { padding: 80px 0; background: var(--white); }
-        .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-        .news-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 24px; }
+        .news-section { padding: 80px 0; background: var(--bg); transition: background 0.3s ease; }
+        .news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
         .news-card {
-            border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden;
-            transition: all var(--transition); background: var(--white);
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition);
         }
         .news-card:hover { box-shadow: var(--shadow-lg); border-color: transparent; transform: translateY(-3px); }
-        .news-card.featured .news-thumb { height: 220px; }
-        .news-thumb {
-            height: 160px; position: relative;
-            display: flex; align-items: flex-end; padding: 16px;
+        .news-card-img {
+            height: 160px; display: flex; align-items: center; justify-content: center;
+            font-size: 36px; position: relative; overflow: hidden;
         }
-        .news-category-badge {
-            font-size: 11px; font-weight: 700; padding: 4px 12px;
-            border-radius: 3px; text-transform: uppercase; letter-spacing: 0.6px;
-        }
-        .news-body { padding: 20px; }
-        .news-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: flex; gap: 12px; align-items: center; }
-        .news-meta-dot { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
-        .news-card h3 {
-            font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--navy);
-            line-height: 1.4; margin-bottom: 8px;
-        }
-        .news-card.featured h3 { font-size: 17px; }
-        .news-card h3 { font-size: 14px; }
-        .news-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
-        .news-read-more { font-size: 13px; font-weight: 600; color: var(--navy-light); display: flex; align-items: center; gap: 5px; transition: gap var(--transition); }
-        .news-card:hover .news-read-more { gap: 8px; }
-        .news-sidebar { display: flex; flex-direction: column; gap: 14px; }
-        .news-side-item {
-            padding: 16px 18px; border: 1px solid var(--gray-200); border-radius: var(--radius-md);
-            cursor: pointer; transition: all var(--transition); background: var(--white);
-        }
-        .news-side-item:hover { border-color: var(--navy); box-shadow: var(--shadow-sm); }
-        .news-side-date { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
-        .news-side-title { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.45; }
-
-        /* ===== LEADERSHIP ===== */
-        .leadership-section { padding: 80px 0; background: var(--off-white); }
-        .leadership-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .leader-card {
-            background: var(--white); border: 1px solid var(--gray-200);
-            border-radius: var(--radius-lg); padding: 28px 24px; text-align: center;
-            transition: all var(--transition);
-        }
-        .leader-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
-        .leader-avatar {
-            width: 80px; height: 80px; border-radius: 50%;
-            margin: 0 auto 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--white);
-        }
-        .leader-name { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-        .leader-title { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4; }
-        .leader-divider { width: 32px; height: 2px; background: var(--gold); margin: 0 auto 14px; border-radius: 2px; }
-        .leader-bio { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
-
-        /* ===== PUBLICATIONS ===== */
-        .publications-section { padding: 80px 0; background: var(--white); }
-        .publications-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .pub-card {
-            border: 1px solid var(--gray-200); border-radius: var(--radius-lg);
-            overflow: hidden; transition: all var(--transition); background: var(--white);
-        }
-        .pub-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
-        .pub-thumb {
-            height: 120px; display: flex; align-items: center; justify-content: center;
-            font-size: 36px; position: relative;
-        }
-        .pub-type-badge {
-            position: absolute; top: 12px; right: 12px;
-            font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 3px;
-            text-transform: uppercase; letter-spacing: 0.6px;
-        }
-        .pub-body { padding: 18px; }
-        .pub-date { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
-        .pub-title { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.45; margin-bottom: 14px; }
-        .pub-download {
-            font-size: 12px; font-weight: 600; color: var(--navy-light);
-            display: flex; align-items: center; gap: 5px; transition: gap var(--transition);
-        }
-        .pub-card:hover .pub-download { gap: 8px; }
-
-        /* ===== CTA ===== */
-        .cta-section {
-            padding: 80px 0;
-            background: var(--navy);
-            position: relative; overflow: hidden;
-        }
-        .cta-inner {
-            position: relative; z-index: 1;
-            display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
-        }
-        .cta-section h2 { font-size: clamp(28px, 4vw, 40px); color: var(--white); margin-bottom: 14px; }
-        .cta-section p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.7; }
-        .cta-buttons { display: flex; gap: 12px; flex-direction: column; align-items: flex-start; }
+        .news-card-body { padding: 20px; }
+        .news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .news-cat { font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; }
+        .news-date { font-size: 11.5px; color: var(--text-muted); }
+        .news-card h3 { font-family: 'Bitter', serif; font-size: 15.5px; color: var(--text); margin-bottom: 8px; line-height: 1.35; }
+        .news-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+        .news-link { font-size: 12.5px; font-weight: 600; color: var(--purple); display: flex; align-items: center; gap: 5px; transition: gap var(--transition); }
+        [data-theme="dark"] .news-link { color: #C4A8E8; }
+        .news-card:hover .news-link { gap: 8px; }
+        .news-cta-row { display: flex; justify-content: center; margin-top: 36px; }
 
         /* ===== PARTNERS ===== */
-        .partners-section { padding: 48px 0; border-top: 1px solid var(--gray-200); background: var(--white); }
-        .partners-label { text-align: center; font-size: 12px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 28px; }
-        .partners-row { display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .partners-section { padding: 44px 0; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.3s ease; }
+        .partners-label { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 24px; }
+        .partners-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; }
         .partner-logo {
-            padding: 10px 20px; border: 1px solid var(--gray-200); border-radius: var(--radius-md);
-            font-size: 13px; font-weight: 700; color: var(--gray-400);
-            transition: all var(--transition);
+            padding: 8px 20px; border: 1px solid var(--border-mid); border-radius: var(--radius-md);
+            font-size: 13px; font-weight: 700; color: var(--text-muted);
+            background: var(--bg-card); letter-spacing: 0.5px; transition: all var(--transition);
         }
-        .partner-logo:hover { border-color: var(--gray-400); color: var(--text-muted); }
+        .partner-logo:hover { border-color: var(--purple); color: var(--purple); box-shadow: var(--shadow-sm); }
+        [data-theme="dark"] .partner-logo:hover { border-color: #C4A8E8; color: #C4A8E8; }
 
         /* ===== FOOTER ===== */
-        .footer { background: #070F22; padding: 64px 0 0; }
-        .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-        .footer-brand .logo { margin-bottom: 14px; }
-        .footer-brand .logo-acronym { color: var(--white); }
-        .footer-brand .logo-tagline { color: rgba(255,255,255,0.4); }
-        .footer-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+        .footer { background: var(--footer-bg); transition: background 0.3s ease; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 48px; padding: 64px 0 48px; }
+        .footer-brand {}
+        .footer-logo-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .footer-logo-mark {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--purple), var(--teal));
+            border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+        }
+        .footer-acronym { font-family: 'Bitter', serif; font-size: 18px; color: white; letter-spacing: 1px; }
+        .footer-tagline { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 1px; }
+        .footer-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.75; margin-bottom: 22px; }
         .footer-social { display: flex; gap: 8px; }
         .footer-social a {
             width: 34px; height: 34px; border-radius: 50%;
-            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
             display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,0.5); font-size: 13px;
-            transition: all var(--transition);
+            color: rgba(255,255,255,0.5); font-size: 13px; transition: all var(--transition);
         }
-        .footer-social a:hover { background: var(--gold); border-color: var(--gold); color: #1A1000; }
-        .footer-col h4 {
-            font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
-            color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 18px;
-        }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-col ul li a {
-            font-size: 13px; color: rgba(255,255,255,0.55);
-            transition: color var(--transition);
-        }
-        .footer-col ul li a:hover { color: var(--gold-light); }
-        .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
-        .footer-contact-icon { color: var(--gold); font-size: 13px; margin-top: 3px; flex-shrink: 0; }
-        .footer-contact-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.55; }
+        .footer-social a:hover { background: var(--orange); border-color: transparent; color: white; }
+        .footer-col h4 { font-family: 'Bitter', serif; font-size: 14px; color: white; margin-bottom: 16px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+        .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.45); transition: color var(--transition); }
+        .footer-col ul li a:hover { color: var(--orange); }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+        .footer-contact-icon { color: var(--orange); font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+        .footer-contact-text { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+        .footer-contact-text a { color: rgba(255,255,255,0.45); }
+        .footer-contact-text a:hover { color: var(--orange); }
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.07);
-            padding: 20px 0;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 20px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
         }
         .footer-bottom-left { font-size: 12px; color: rgba(255,255,255,0.3); }
         .footer-bottom-right { display: flex; gap: 20px; }
-        .footer-bottom-right a { font-size: 12px; color: rgba(255,255,255,0.3); transition: color var(--transition); }
-        .footer-bottom-right a:hover { color: rgba(255,255,255,0.6); }
+        .footer-bottom-right a { font-size: 12px; color: rgba(255,255,255,0.35); transition: color var(--transition); }
+        .footer-bottom-right a:hover { color: var(--orange); }
+
+        /* ===== GOV STRIP ===== */
+        .gov-strip {
+            background: var(--green);
+            padding: 7px 0; text-align: center;
+        }
+        .gov-strip-text { font-size: 11.5px; color: rgba(255,255,255,0.85); font-weight: 500; letter-spacing: 0.3px; }
+        .gov-strip-text strong { color: white; }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-            .hero-right { display: none; }
-            .mandates-grid { grid-template-columns: repeat(2, 1fr); }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-            .licensing-intro { grid-template-columns: 1fr; gap: 40px; }
-            .consumer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .news-grid { grid-template-columns: 1fr; }
-            .news-sidebar { flex-direction: row; flex-wrap: wrap; }
-            .news-side-item { flex: 1; min-width: 200px; }
-            .leadership-grid { grid-template-columns: 1fr 1fr; }
-            .publications-grid { grid-template-columns: repeat(2, 1fr); }
+            .mandates-grid { grid-template-columns: repeat(2,1fr); }
             .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-            .cta-inner { grid-template-columns: 1fr; gap: 32px; }
-            .cta-buttons { flex-direction: row; }
         }
-
         @media (max-width: 768px) {
             nav, .header-actions { display: none; }
-            .mobile-toggle { display: flex; }
-            .topbar-left { display: none; }
-            .mandates-grid { grid-template-columns: 1fr; }
+            .mobile-toggle { display: block; }
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-right { display: none; }
             .services-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .leadership-grid { grid-template-columns: 1fr; }
-            .publications-grid { grid-template-columns: 1fr 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2,1fr); }
+            .licensing-intro { grid-template-columns: 1fr; gap: 40px; }
+            .consumer-grid { grid-template-columns: 1fr; }
             .footer-top { grid-template-columns: 1fr; }
-            .news-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .mandates-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
-            .mobile-menu {
-                display: flex; flex-direction: column;
-                padding: 16px 24px 20px; gap: 4px;
-                border-top: 1px solid var(--gray-200);
-            }
-            .mobile-menu a {
-                padding: 10px 14px; border-radius: var(--radius-sm);
-                font-size: 15px; font-weight: 500; color: var(--text-muted);
-                transition: all var(--transition);
-            }
-            .mobile-menu a:hover { background: var(--gray-100); color: var(--navy); }
-            .mobile-menu { display: none; }
-            .mobile-menu.open { display: flex; }
         }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0; transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
+
+    <!-- Gov Strip -->
+    <div class="gov-strip">
+        <div class="container">
+            <p class="gov-strip-text"><strong>Republic of Botswana</strong> — Official Government Regulatory Body | <a href="#" style="color:rgba(255,255,255,0.8); text-decoration:underline;">bocra.org.bw</a></p>
+        </div>
+    </div>
 
     <!-- Topbar -->
     <div class="topbar">
@@ -622,13 +582,16 @@
                     <a href="#"><i class="fas fa-clock"></i> Mon–Fri: 7:30 AM – 4:30 PM</a>
                 </div>
                 <div class="topbar-right">
-                    <a href="#"><i class="fas fa-search"></i></a>
                     <div class="topbar-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
+                    <label class="toggle-label" for="themeToggle">
+                        <i class="fas fa-moon" style="font-size:11px; color:rgba(255,255,255,0.55);"></i>
+                        <div class="theme-toggle" id="themeToggle"></div>
+                    </label>
                 </div>
             </div>
         </div>
@@ -652,39 +615,39 @@
                 </div>
 
                 <nav>
-                    <a href="index.html" class="active">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="services.html">Services</a>
+                    <a href="#" class="active">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
                     <a href="#">Licensing</a>
                     <a href="#">Publications</a>
-                    <a href="news.html">News</a>
+                    <a href="#">News</a>
                     <a href="#">Contact</a>
                 </nav>
 
                 <div class="header-actions">
-                    <a href="#" class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">
-                        <i class="fas fa-user" style="font-size:12px;"></i> Portal Login
+                    <a href="#" class="btn btn-outline" style="padding: 8px 15px; font-size: 13px;">
+                        <i class="fas fa-user" style="font-size:11px;"></i> Portal Login
                     </a>
-                    <a href="#" class="btn btn-gold" style="padding: 8px 16px; font-size: 13px;">
-                        <i class="fas fa-file-alt" style="font-size:12px;"></i> Apply for License
+                    <a href="#" class="btn btn-orange" style="padding: 8px 15px; font-size: 13px;">
+                        <i class="fas fa-file-alt" style="font-size:11px;"></i> Apply for License
                     </a>
                 </div>
 
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-                    <i class="fas fa-bars" style="font-size: 20px; color: var(--navy);"></i>
+                    <i class="fas fa-bars" style="font-size: 20px; color: var(--text-mid);"></i>
                 </button>
             </div>
 
             <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
                 <a href="#">Licensing</a>
                 <a href="#">Publications</a>
-                <a href="news.html">News</a>
+                <a href="#">News</a>
                 <a href="#">Contact</a>
-                <a href="#" style="margin-top: 8px; background: var(--navy); color: white !important; text-align: center;">Apply for License</a>
+                <a href="#" style="margin-top: 8px; background: var(--orange); color: white !important; text-align: center; border-radius: var(--radius-md);">Apply for License</a>
             </div>
         </div>
     </header>
@@ -695,7 +658,7 @@
             <div class="notice-inner">
                 <span class="notice-tag">Notice</span>
                 <span class="notice-text">Public consultation open on revised Universal Service Fund guidelines — deadline 30 April 2026. All stakeholders are encouraged to participate.</span>
-                <a href="#" class="notice-link">Read More <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="notice-link">Read More <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
             </div>
         </div>
     </div>
@@ -703,21 +666,22 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <div class="hero-bg-circle c1"></div>
-            <div class="hero-bg-circle c2"></div>
-            <div class="hero-bg-lines"></div>
+            <div class="hero-bg-orb o1"></div>
+            <div class="hero-bg-orb o2"></div>
+            <div class="hero-bg-orb o3"></div>
+            <div class="hero-grid-lines"></div>
         </div>
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-left">
                     <div class="hero-badge">
-                        <span class="hero-badge-dot"></span>
+                        <span class="badge-dot"></span>
                         Official Regulatory Authority of Botswana
                     </div>
                     <h1>Regulating Botswana's <em>Communications</em> for All</h1>
-                    <p class="hero-desc">BOCRA promotes fair access, consumer protection, and innovation across the telecommunications, broadcasting, and postal sectors — for the benefit of every Motswana.</p>
+                    <p class="hero-desc">BOCRA promotes fair access, consumer protection, and innovation across telecommunications, broadcasting, and postal sectors — for the benefit of every Motswana.</p>
                     <div class="hero-ctas">
-                        <a href="#" class="btn btn-gold">
+                        <a href="#" class="btn btn-orange">
                             <i class="fas fa-th-large"></i> Explore Services
                         </a>
                         <a href="#" class="btn btn-ghost">
@@ -735,66 +699,52 @@
                             <div class="hero-stat-label">Citizens Covered</div>
                         </div>
                         <div class="hero-stat">
-                            <div class="hero-stat-num">98%</div>
-                            <div class="hero-stat-label">Network Coverage</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-num">2001</div>
-                            <div class="hero-stat-label">Year Established</div>
+                            <div class="hero-stat-num">12</div>
+                            <div class="hero-stat-label">Years of Service</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="hero-right">
                     <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(201,162,39,0.15);">
-                            <i class="fas fa-file-signature" style="color: var(--gold-light);"></i>
+                        <div class="hero-card-icon" style="background: rgba(249,115,22,0.15);">
+                            <i class="fas fa-file-signature" style="color: var(--orange);"></i>
                         </div>
                         <div>
                             <div class="hero-card-title">Apply for a License</div>
-                            <div class="hero-card-desc">Telecoms, broadcasting, postal services</div>
+                            <div class="hero-card-desc">Telecom, broadcasting, postal & spectrum</div>
                         </div>
-                        <i class="fas fa-chevron-right hero-card-arrow"></i>
+                        <i class="fas fa-arrow-right hero-card-arrow"></i>
                     </div>
                     <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(15,110,86,0.2);">
-                            <i class="fas fa-search" style="color: #5DCAA5;"></i>
-                        </div>
-                        <div>
-                            <div class="hero-card-title">Verify a License</div>
-                            <div class="hero-card-desc">Check operator registration status</div>
-                        </div>
-                        <i class="fas fa-chevron-right hero-card-arrow"></i>
-                    </div>
-                    <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(153,60,29,0.2);">
-                            <i class="fas fa-exclamation-circle" style="color: #F09575;"></i>
+                        <div class="hero-card-icon" style="background: rgba(26,92,107,0.2);">
+                            <i class="fas fa-headset" style="color: #4ABDD0;"></i>
                         </div>
                         <div>
                             <div class="hero-card-title">File a Complaint</div>
-                            <div class="hero-card-desc">Report service issues or violations</div>
+                            <div class="hero-card-desc">Consumer rights & dispute resolution</div>
                         </div>
-                        <i class="fas fa-chevron-right hero-card-arrow"></i>
+                        <i class="fas fa-arrow-right hero-card-arrow"></i>
                     </div>
                     <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(26,75,173,0.2);">
-                            <i class="fas fa-book-open" style="color: #85B7EB;"></i>
+                        <div class="hero-card-icon" style="background: rgba(77,124,15,0.2);">
+                            <i class="fas fa-check-double" style="color: #8BC34A;"></i>
                         </div>
                         <div>
-                            <div class="hero-card-title">Access Publications</div>
-                            <div class="hero-card-desc">Regulations, policies, reports & forms</div>
+                            <div class="hero-card-title">Verify a License</div>
+                            <div class="hero-card-desc">Public operator register lookup</div>
                         </div>
-                        <i class="fas fa-chevron-right hero-card-arrow"></i>
+                        <i class="fas fa-arrow-right hero-card-arrow"></i>
                     </div>
                     <div class="hero-card">
-                        <div class="hero-card-icon" style="background: rgba(99,153,34,0.2);">
-                            <i class="fas fa-comments" style="color: #97C459;"></i>
+                        <div class="hero-card-icon" style="background: rgba(249,163,212,0.15);">
+                            <i class="fas fa-comments" style="color: var(--pink);"></i>
                         </div>
                         <div>
                             <div class="hero-card-title">Public Consultations</div>
-                            <div class="hero-card-desc">Share your views on regulations</div>
+                            <div class="hero-card-desc">Have your say on regulatory policy</div>
                         </div>
-                        <i class="fas fa-chevron-right hero-card-arrow"></i>
+                        <i class="fas fa-arrow-right hero-card-arrow"></i>
                     </div>
                 </div>
             </div>
@@ -802,43 +752,44 @@
     </section>
 
     <!-- Mandates -->
-    <section class="mandates">
+    <section class="mandates-section">
         <div class="container">
-            <span class="section-tag">Our Mandate</span>
-            <h2 class="section-heading">What BOCRA regulates</h2>
-            <p class="section-sub">Established under the Botswana Communications Regulatory Authority Act, BOCRA oversees the full spectrum of communications and postal services in Botswana.</p>
-
+            <div style="text-align:center; margin-bottom: 48px;">
+                <span class="section-tag">Our Mandate</span>
+                <h2 class="section-heading">Sectors we regulate</h2>
+                <p class="section-sub" style="margin: 0 auto;">BOCRA oversees five communications sectors under the Communications Regulatory Authority Act 2012, protecting consumers and enabling competition.</p>
+            </div>
             <div class="mandates-grid fade-in">
                 <div class="mandate-card">
-                    <div class="mandate-icon-wrap" style="background: #E8F0FB;">
-                        <i class="fas fa-wifi" style="color: #185FA5;"></i>
+                    <div class="mandate-icon-wrap" style="background: rgba(74,44,112,0.08);">
+                        <i class="fas fa-signal" style="color: var(--purple);"></i>
                     </div>
                     <h3>Telecommunications</h3>
-                    <p>Licensing and regulating voice, data, broadband, and internet service providers to ensure quality, fair pricing, and coverage across Botswana.</p>
+                    <p>Licensing and oversight of mobile, fixed-line, and internet service providers across Botswana.</p>
                     <a href="#" class="mandate-link">Learn more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
                 </div>
                 <div class="mandate-card">
-                    <div class="mandate-icon-wrap" style="background: #FEF3E0;">
-                        <i class="fas fa-broadcast-tower" style="color: #854F0B;"></i>
+                    <div class="mandate-icon-wrap" style="background: rgba(26,92,107,0.1);">
+                        <i class="fas fa-broadcast-tower" style="color: var(--teal);"></i>
                     </div>
                     <h3>Broadcasting</h3>
-                    <p>Regulating radio and television broadcasters including content standards, licensing of channels, and ensuring diverse, local programming for citizens.</p>
+                    <p>Regulation of commercial radio and television stations including Yarona FM, Duma FM, Gabz FM and eBotswana.</p>
                     <a href="#" class="mandate-link">Learn more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
                 </div>
                 <div class="mandate-card">
-                    <div class="mandate-icon-wrap" style="background: #E3F5EE;">
-                        <i class="fas fa-envelope-open-text" style="color: #0F6E56;"></i>
+                    <div class="mandate-icon-wrap" style="background: rgba(249,115,22,0.1);">
+                        <i class="fas fa-globe" style="color: var(--orange);"></i>
                     </div>
-                    <h3>Postal services</h3>
-                    <p>Overseeing BotswanaPost and courier operators to maintain reliable, accessible, and affordable postal services for all communities.</p>
+                    <h3>Internet & ICTs</h3>
+                    <p>Facilitating growth of the internet market and overseeing ICT development in partnership with industry.</p>
                     <a href="#" class="mandate-link">Learn more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
                 </div>
                 <div class="mandate-card">
-                    <div class="mandate-icon-wrap" style="background: #FCF0EE;">
-                        <i class="fas fa-wave-square" style="color: #993C1D;"></i>
+                    <div class="mandate-icon-wrap" style="background: rgba(77,124,15,0.1);">
+                        <i class="fas fa-envelope-open-text" style="color: var(--green);"></i>
                     </div>
-                    <h3>Spectrum management</h3>
-                    <p>Allocating and managing radio frequency spectrum for interference-free use, supporting 5G readiness, digital migration, and aviation communications.</p>
+                    <h3>Postal Services</h3>
+                    <p>Supervision of postal services to ensure safe, reliable, and affordable delivery for all Batswana.</p>
                     <a href="#" class="mandate-link">Learn more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
                 </div>
             </div>
@@ -848,95 +799,80 @@
     <!-- Services -->
     <section class="services-section">
         <div class="container">
-            <span class="section-tag">Services</span>
-            <h2 class="section-heading">Online regulatory services</h2>
-            <p class="section-sub">Access BOCRA's digital services — apply, verify, report, and engage with us from anywhere.</p>
-
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:16px;">
+                <div>
+                    <span class="section-tag">Services</span>
+                    <h2 class="section-heading" style="margin-bottom:0;">What we offer</h2>
+                </div>
+                <a href="#" class="btn btn-outline"><i class="fas fa-th-large"></i> View all services</a>
+            </div>
             <div class="services-grid fade-in">
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #E8F0FB;">
-                            <i class="fas fa-file-signature" style="color: #185FA5;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #E8F0FB; color: #185FA5;">Licensing</span>
+                        <div class="service-icon-wrap" style="background: rgba(74,44,112,0.08);"><i class="fas fa-file-signature" style="color: var(--purple);"></i></div>
+                        <span class="service-tag" style="background: rgba(74,44,112,0.08); color: var(--purple);">Licensing</span>
                     </div>
                     <h3>License application</h3>
-                    <p>Apply online for new telecommunications, broadcasting, or postal service licenses. Track your application status in real time through the BOCRA portal.</p>
+                    <p>Apply for telecommunications, broadcasting, postal, or spectrum licences through the BOCRA online portal with step-by-step guidance.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">Apply now <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">Apply now <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #E3F5EE;">
-                            <i class="fas fa-check-circle" style="color: #0F6E56;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #E3F5EE; color: #0F6E56;">Compliance</span>
+                        <div class="service-icon-wrap" style="background: rgba(77,124,15,0.1);"><i class="fas fa-check-circle" style="color: var(--green);"></i></div>
+                        <span class="service-tag" style="background: rgba(77,124,15,0.08); color: var(--green);">Compliance</span>
                     </div>
                     <h3>License verification</h3>
-                    <p>Verify whether an operator or service provider holds a valid BOCRA license. Protect yourself from unlicensed operators with our public register lookup.</p>
+                    <p>Verify whether an operator holds a valid BOCRA licence. Protect yourself from unlicensed operators with our public register lookup.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">Verify now <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">Verify now <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #FCF0EE;">
-                            <i class="fas fa-bullhorn" style="color: #993C1D;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #FCF0EE; color: #993C1D;">Consumer</span>
+                        <div class="service-icon-wrap" style="background: rgba(249,115,22,0.1);"><i class="fas fa-bullhorn" style="color: var(--orange);"></i></div>
+                        <span class="service-tag" style="background: rgba(249,115,22,0.08); color: var(--orange);">Consumer</span>
                     </div>
                     <h3>File a complaint</h3>
-                    <p>Submit a complaint against a service provider for poor quality, billing disputes, or consumer rights violations. Track your case with a unique reference number.</p>
+                    <p>Submit a complaint against a service provider for poor quality, billing disputes, or consumer rights violations. Track your case online.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">File complaint <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">File complaint <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #FEF3E0;">
-                            <i class="fas fa-sync-alt" style="color: #854F0B;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #FEF3E0; color: #854F0B;">Renewal</span>
+                        <div class="service-icon-wrap" style="background: rgba(26,92,107,0.1);"><i class="fas fa-sync-alt" style="color: var(--teal);"></i></div>
+                        <span class="service-tag" style="background: rgba(26,92,107,0.08); color: var(--teal);">Renewal</span>
                     </div>
                     <h3>License renewal</h3>
-                    <p>Renew expiring licenses before the deadline to avoid service interruptions and penalties. Set up automatic reminders through the BOCRA online portal.</p>
+                    <p>Renew expiring licences before the deadline to avoid service interruptions and penalties via the BOCRA portal.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">Renew license <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">Renew license <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #EEEDFE;">
-                            <i class="fas fa-comments" style="color: #534AB7;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #EEEDFE; color: #534AB7;">Engagement</span>
+                        <div class="service-icon-wrap" style="background: rgba(249,163,212,0.15);"><i class="fas fa-comments" style="color: var(--pink-deep);"></i></div>
+                        <span class="service-tag" style="background: rgba(249,163,212,0.12); color: var(--pink-deep);">Engagement</span>
                     </div>
                     <h3>Public consultations</h3>
-                    <p>Participate in open regulatory consultations. Submit written comments, respond to discussion papers, and shape Botswana's communications policy landscape.</p>
+                    <p>Participate in open regulatory consultations. Submit comments and shape Botswana's communications policy landscape.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">View open consultations <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">View consultations <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-header">
-                        <div class="service-icon-wrap" style="background: #E8F0FB;">
-                            <i class="fas fa-chart-bar" style="color: #185FA5;"></i>
-                        </div>
-                        <span class="service-tag" style="background: #E8F0FB; color: #185FA5;">Research</span>
+                        <div class="service-icon-wrap" style="background: rgba(77,124,15,0.1);"><i class="fas fa-chart-bar" style="color: var(--green);"></i></div>
+                        <span class="service-tag" style="background: rgba(77,124,15,0.08); color: var(--green);">Research</span>
                     </div>
                     <h3>Market data & statistics</h3>
-                    <p>Access BOCRA's annual sector statistics, market surveys, and regulatory performance reports. Useful for operators, researchers, and investors.</p>
+                    <p>Access BOCRA's annual sector statistics, market surveys, and regulatory performance reports for operators and researchers.</p>
                     <div class="service-card-footer">
-                        <a href="#" class="service-card-link">Browse data <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <a href="#" class="service-card-link">Browse data <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
-            </div>
-
-            <div class="services-cta-row">
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-th-large"></i> View all services
-                </a>
             </div>
         </div>
     </section>
@@ -945,8 +881,8 @@
     <section class="stats-section">
         <div class="container">
             <div style="text-align:center; margin-bottom: 48px; position: relative; z-index:1;">
-                <span class="section-tag" style="color: var(--gold-light);">Impact</span>
-                <h2 class="section-heading" style="color: var(--white);">Our impact in numbers</h2>
+                <span class="section-tag" style="color: var(--orange);">Impact</span>
+                <h2 class="section-heading" style="color: white;">Our impact in numbers</h2>
             </div>
             <div class="stats-grid fade-in">
                 <div class="stat-item">
@@ -966,7 +902,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
-                    <div class="stat-number">24+</div>
+                    <div class="stat-number">12+</div>
                     <div class="stat-label">Years of Regulatory<br>Service to Botswana</div>
                 </div>
             </div>
@@ -979,20 +915,20 @@
             <div class="licensing-intro">
                 <div>
                     <span class="section-tag">Licensing</span>
-                    <h2 class="section-heading">License types & how to apply</h2>
-                    <p class="section-sub">BOCRA issues various categories of communications licenses. Select the type that applies to your business to view requirements, fees, and application procedures.</p>
+                    <h2 class="section-heading">Licence types & how to apply</h2>
+                    <p class="section-sub">BOCRA issues various categories of communications licences. Select the type that applies to your business to view requirements, fees, and application procedures.</p>
                     <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 24px;">
                         <div style="display: flex; align-items: flex-start; gap: 12px;">
-                            <div style="width:24px; height:24px; border-radius:50%; background: var(--navy); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">1</div>
-                            <div><strong style="font-size:14px; color: var(--navy);">Select your license type</strong><br><span style="font-size:13px; color: var(--text-muted);">Browse the available license categories and find the one that fits your service.</span></div>
+                            <div style="width:28px; height:28px; border-radius:50%; background: linear-gradient(135deg,var(--purple),var(--teal)); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">1</div>
+                            <div><strong style="font-size:14px; color: var(--text);">Select your licence type</strong><br><span style="font-size:13px; color: var(--text-muted);">Browse the available licence categories and find the one that fits your service.</span></div>
                         </div>
                         <div style="display: flex; align-items: flex-start; gap: 12px;">
-                            <div style="width:24px; height:24px; border-radius:50%; background: var(--navy); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">2</div>
-                            <div><strong style="font-size:14px; color: var(--navy);">Prepare your documents</strong><br><span style="font-size:13px; color: var(--text-muted);">Download the application form and compile required supporting documentation.</span></div>
+                            <div style="width:28px; height:28px; border-radius:50%; background: linear-gradient(135deg,var(--purple),var(--teal)); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">2</div>
+                            <div><strong style="font-size:14px; color: var(--text);">Prepare your documents</strong><br><span style="font-size:13px; color: var(--text-muted);">Download the application form and compile required supporting documentation.</span></div>
                         </div>
                         <div style="display: flex; align-items: flex-start; gap: 12px;">
-                            <div style="width:24px; height:24px; border-radius:50%; background: var(--navy); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">3</div>
-                            <div><strong style="font-size:14px; color: var(--navy);">Submit & track online</strong><br><span style="font-size:13px; color: var(--text-muted);">Submit through the BOCRA portal and receive a reference number to track progress.</span></div>
+                            <div style="width:28px; height:28px; border-radius:50%; background: linear-gradient(135deg,var(--purple),var(--teal)); color: white; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px;">3</div>
+                            <div><strong style="font-size:14px; color: var(--text);">Submit & track online</strong><br><span style="font-size:13px; color: var(--text-muted);">Submit through the BOCRA portal and receive a reference number to track your application.</span></div>
                         </div>
                     </div>
                     <div style="margin-top: 28px; display: flex; gap: 12px;">
@@ -1001,10 +937,10 @@
                     </div>
                 </div>
                 <div class="licensing-visual">
-                    <p style="font-size:12px; font-weight:700; color: var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom: 16px;">License categories</p>
+                    <p style="font-size:11px; font-weight:700; color: var(--text-muted); text-transform:uppercase; letter-spacing:1.2px; margin-bottom: 14px;">Licence categories</p>
                     <div class="license-types">
                         <div class="license-type-item active">
-                            <div class="license-type-icon" style="background:#E8F0FB;"><i class="fas fa-wifi" style="color:#185FA5; font-size:16px;"></i></div>
+                            <div class="license-type-icon" style="background:rgba(74,44,112,0.1);"><i class="fas fa-wifi" style="color:var(--purple);"></i></div>
                             <div>
                                 <div class="license-type-name">Individual Telecommunications</div>
                                 <div class="license-type-count">For mobile & fixed-line operators</div>
@@ -1012,7 +948,7 @@
                             <i class="fas fa-chevron-right license-type-arrow"></i>
                         </div>
                         <div class="license-type-item">
-                            <div class="license-type-icon" style="background:#FEF3E0;"><i class="fas fa-broadcast-tower" style="color:#854F0B; font-size:16px;"></i></div>
+                            <div class="license-type-icon" style="background:rgba(249,115,22,0.1);"><i class="fas fa-broadcast-tower" style="color:var(--orange);"></i></div>
                             <div>
                                 <div class="license-type-name">Broadcasting</div>
                                 <div class="license-type-count">Radio & television operators</div>
@@ -1020,7 +956,7 @@
                             <i class="fas fa-chevron-right license-type-arrow"></i>
                         </div>
                         <div class="license-type-item">
-                            <div class="license-type-icon" style="background:#E3F5EE;"><i class="fas fa-network-wired" style="color:#0F6E56; font-size:16px;"></i></div>
+                            <div class="license-type-icon" style="background:rgba(77,124,15,0.1);"><i class="fas fa-network-wired" style="color:var(--green);"></i></div>
                             <div>
                                 <div class="license-type-name">Class (Value-Added Services)</div>
                                 <div class="license-type-count">ISPs, VoIP, resellers</div>
@@ -1028,7 +964,7 @@
                             <i class="fas fa-chevron-right license-type-arrow"></i>
                         </div>
                         <div class="license-type-item">
-                            <div class="license-type-icon" style="background:#EEEDFE;"><i class="fas fa-envelope-open-text" style="color:#534AB7; font-size:16px;"></i></div>
+                            <div class="license-type-icon" style="background:rgba(26,92,107,0.1);"><i class="fas fa-envelope-open-text" style="color:var(--teal);"></i></div>
                             <div>
                                 <div class="license-type-name">Postal / Courier</div>
                                 <div class="license-type-count">Delivery & postal operators</div>
@@ -1036,7 +972,7 @@
                             <i class="fas fa-chevron-right license-type-arrow"></i>
                         </div>
                         <div class="license-type-item">
-                            <div class="license-type-icon" style="background:#FCF0EE;"><i class="fas fa-wave-square" style="color:#993C1D; font-size:16px;"></i></div>
+                            <div class="license-type-icon" style="background:rgba(249,163,212,0.15);"><i class="fas fa-wave-square" style="color:var(--pink-deep);"></i></div>
                             <div>
                                 <div class="license-type-name">Spectrum Assignment</div>
                                 <div class="license-type-count">Frequency use authorisations</div>
@@ -1062,28 +998,28 @@
                             <div class="step-num">1</div>
                             <div class="step-content">
                                 <h4>Contact your service provider first</h4>
-                                <p>Before escalating to BOCRA, raise your concern directly with your service provider and allow them 7 working days to resolve it.</p>
+                                <p>Before escalating to BOCRA, raise your concern directly with your service provider and allow them 7 working days to respond.</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <div class="step-num">2</div>
                             <div class="step-content">
                                 <h4>Submit complaint to BOCRA</h4>
-                                <p>If unresolved, submit a formal complaint via our online portal, phone (+267 392 3165), email, or in person at our Gaborone office.</p>
+                                <p>If unresolved, submit a formal complaint via our online portal, phone (+267 392 3165), email, or visit our Gaborone office.</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <div class="step-num">3</div>
                             <div class="step-content">
                                 <h4>Receive your reference number</h4>
-                                <p>You will receive a unique case reference number to track your complaint status at any time through our portal.</p>
+                                <p>You'll receive a unique case reference number to track your complaint status at any time through our portal.</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <div class="step-num">4</div>
                             <div class="step-content">
                                 <h4>BOCRA investigates & resolves</h4>
-                                <p>Our consumer team investigates and aims to resolve complaints within 30 working days, keeping you informed throughout the process.</p>
+                                <p>Our consumer team investigates and aims to resolve complaints within 30 working days, keeping you informed throughout.</p>
                             </div>
                         </div>
                     </div>
@@ -1134,10 +1070,10 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Description of complaint</label>
-                        <textarea class="form-textarea" placeholder="Describe your complaint in detail, including dates and any reference numbers you have from the service provider..."></textarea>
+                        <textarea class="form-textarea" placeholder="Describe your complaint in detail, including dates and any reference numbers from the service provider..."></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-paper-plane"></i> Submit Complaint
+                    <button class="btn btn-orange" style="width:100%; justify-content:center;">
+                        <i class="fas fa-paper-plane"></i> Submit complaint
                     </button>
                 </div>
             </div>
@@ -1147,229 +1083,49 @@
     <!-- News -->
     <section class="news-section">
         <div class="container">
-            <div class="news-header">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:16px;">
                 <div>
-                    <span class="section-tag">News & Updates</span>
-                    <h2 class="section-heading">Latest from BOCRA</h2>
+                    <span class="section-tag">Latest</span>
+                    <h2 class="section-heading" style="margin-bottom:0;">News & announcements</h2>
                 </div>
-                <a href="#" class="btn btn-outline" style="font-size:13px; padding: 8px 18px;">
-                    View all news <i class="fas fa-arrow-right" style="font-size:11px;"></i>
-                </a>
+                <a href="#" class="btn btn-outline">View all news</a>
             </div>
-
             <div class="news-grid fade-in">
-                <!-- Featured -->
-                <div class="news-card featured">
-                    <div class="news-thumb" style="background: linear-gradient(135deg, #0B2555, #1A4BAD); padding: 16px;">
-                        <span class="news-category-badge" style="background: var(--gold); color: #1A1000;">Announcement</span>
-                    </div>
-                    <div class="news-body">
+                <div class="news-card">
+                    <div class="news-card-img" style="background: linear-gradient(135deg, rgba(74,44,112,0.15), rgba(26,92,107,0.15));">📡</div>
+                    <div class="news-card-body">
                         <div class="news-meta">
-                            <span>18 March 2026</span>
-                            <span class="news-meta-dot"></span>
-                            <span>Spectrum</span>
+                            <span class="news-cat" style="background: rgba(74,44,112,0.1); color: var(--purple);">Telecommunications</span>
+                            <span class="news-date">18 Mar 2026</span>
                         </div>
-                        <h3>BOCRA releases updated spectrum allocation framework to accelerate 5G rollout across Botswana</h3>
-                        <p>The new framework sets clear frequency band assignments for 5G services and establishes a competitive licensing process for interested operators. Urban and rural deployment obligations are included.</p>
-                        <a href="#" class="news-read-more">Read full article <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <h3>BOCRA issues new QoS benchmarks for mobile data services</h3>
+                        <p>The revised Quality of Service standards set minimum performance thresholds that all licensed mobile operators must achieve by Q3 2026.</p>
+                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
                 </div>
-
-                <!-- Sidebar -->
-                <div class="news-sidebar">
-                    <div class="news-card">
-                        <div class="news-thumb" style="height:100px; background: linear-gradient(135deg, #3B6D11, #639922);">
-                            <span class="news-category-badge" style="background: white; color: #3B6D11;">Consultation</span>
+                <div class="news-card">
+                    <div class="news-card-img" style="background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(77,124,15,0.1));">📻</div>
+                    <div class="news-card-body">
+                        <div class="news-meta">
+                            <span class="news-cat" style="background: rgba(249,115,22,0.1); color: var(--orange);">Broadcasting</span>
+                            <span class="news-date">10 Mar 2026</span>
                         </div>
-                        <div class="news-body">
-                            <div class="news-meta"><span>10 March 2026</span></div>
-                            <h3>Public consultation open on revised Universal Service Fund disbursement guidelines</h3>
-                            <a href="#" class="news-read-more">Read more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
+                        <h3>National Broadcasting Audience Survey results released</h3>
+                        <p>BOCRA publishes the 2025 audience survey tracking listenership and viewership across commercial and community broadcasters in Botswana.</p>
+                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-card-img" style="background: linear-gradient(135deg, rgba(77,124,15,0.12), rgba(26,92,107,0.1));">📦</div>
+                    <div class="news-card-body">
+                        <div class="news-meta">
+                            <span class="news-cat" style="background: rgba(77,124,15,0.1); color: var(--green);">Postal</span>
+                            <span class="news-date">4 Mar 2026</span>
                         </div>
+                        <h3>Updated licensing requirements for courier service providers</h3>
+                        <p>BOCRA has revised the Commercial Postal Operator licence application requirements to streamline the entry process for new courier businesses.</p>
+                        <a href="#" class="news-link">Read more <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
                     </div>
-                    <div class="news-card">
-                        <div class="news-thumb" style="height:100px; background: linear-gradient(135deg, #854F0B, #C9A227);">
-                            <span class="news-category-badge" style="background: white; color: #854F0B;">Consumer</span>
-                        </div>
-                        <div class="news-body">
-                            <div class="news-meta"><span>4 March 2026</span></div>
-                            <h3>BOCRA launches upgraded complaint portal with real-time case tracking</h3>
-                            <a href="#" class="news-read-more">Read more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
-                        </div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">25 February 2026 · Broadcasting</div>
-                        <div class="news-side-title">Digital migration transition deadline extended for rural broadcasters to December 2026</div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">18 February 2026 · Licensing</div>
-                        <div class="news-side-title">Three new internet service providers licensed to operate in Botswana</div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">10 February 2026 · Postal</div>
-                        <div class="news-side-title">BOCRA releases postal sector performance report for Q3 2025</div>
-                    </div>
-                </div>
-
-                <!-- Third column -->
-                <div class="news-sidebar">
-                    <div class="news-card">
-                        <div class="news-thumb" style="height:100px; background: linear-gradient(135deg, #534AB7, #7F77DD);">
-                            <span class="news-category-badge" style="background: white; color: #534AB7;">Policy</span>
-                        </div>
-                        <div class="news-body">
-                            <div class="news-meta"><span>28 Feb 2026</span></div>
-                            <h3>BOCRA publishes draft Electronic Transactions Regulations for public review</h3>
-                            <a href="#" class="news-read-more">Read more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <div class="news-thumb" style="height:100px; background: linear-gradient(135deg, #0F6E56, #1D9E75);">
-                            <span class="news-category-badge" style="background: white; color: #0F6E56;">Award</span>
-                        </div>
-                        <div class="news-body">
-                            <div class="news-meta"><span>20 Feb 2026</span></div>
-                            <h3>BOCRA recognized at 2026 African Regulators Forum for innovation in consumer protection</h3>
-                            <a href="#" class="news-read-more">Read more <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
-                        </div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">12 February 2026 · Compliance</div>
-                        <div class="news-side-title">BOCRA issues compliance notices to two operators for quality of service violations</div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">5 February 2026 · Spectrum</div>
-                        <div class="news-side-title">Botswana completes analogue radio switch-off in northern districts</div>
-                    </div>
-                    <div class="news-side-item">
-                        <div class="news-side-date">28 January 2026 · Research</div>
-                        <div class="news-side-title">Annual telecommunications sector statistics report for 2025 now available for download</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership -->
-    <section class="leadership-section">
-        <div class="container">
-            <span class="section-tag">Leadership</span>
-            <h2 class="section-heading">Board & management</h2>
-            <p class="section-sub">BOCRA is governed by a Board appointed by the Minister responsible for communications and led by a professional management team.</p>
-
-            <div class="leadership-grid fade-in">
-                <div class="leader-card">
-                    <div class="leader-avatar" style="background: var(--navy);">RK</div>
-                    <div class="leader-name">Rre Kealeboga Moesi</div>
-                    <div class="leader-title">Board Chairperson</div>
-                    <div class="leader-divider"></div>
-                    <p class="leader-bio">Appointed by the Minister of Transport and Communications. Provides strategic oversight and governance direction to BOCRA.</p>
-                </div>
-                <div class="leader-card">
-                    <div class="leader-avatar" style="background: var(--navy-mid);">TM</div>
-                    <div class="leader-name">Dr. Tshiamo Morekisi</div>
-                    <div class="leader-title">Chief Executive Officer</div>
-                    <div class="leader-divider"></div>
-                    <p class="leader-bio">Leads BOCRA's executive functions, regulatory strategy, and day-to-day operations. Over 20 years in telecommunications regulatory practice.</p>
-                </div>
-                <div class="leader-card">
-                    <div class="leader-avatar" style="background: #533;" style="background: #0F6E56;">LB</div>
-                    <div class="leader-name">Ms. Lesego Baitshepi</div>
-                    <div class="leader-title">Director, Legal & Regulatory Affairs</div>
-                    <div class="leader-divider"></div>
-                    <p class="leader-bio">Responsible for regulatory compliance, legal counsel, policy development, and BOCRA's international regulatory engagements.</p>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 36px;">
-                <a href="#" class="btn btn-outline">View full leadership team <i class="fas fa-arrow-right" style="font-size:12px;"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications -->
-    <section class="publications-section">
-        <div class="container">
-            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap: wrap; gap: 16px;">
-                <div>
-                    <span class="section-tag">Publications</span>
-                    <h2 class="section-heading">Documents & resources</h2>
-                </div>
-                <a href="#" class="btn btn-outline" style="font-size:13px; padding: 8px 18px;">Browse full library <i class="fas fa-arrow-right" style="font-size:11px;"></i></a>
-            </div>
-
-            <div class="publications-grid fade-in">
-                <div class="pub-card">
-                    <div class="pub-thumb" style="background: #E8F0FB;">
-                        📋
-                        <span class="pub-type-badge" style="background: #185FA5; color: white;">Regulation</span>
-                    </div>
-                    <div class="pub-body">
-                        <div class="pub-date">February 2026</div>
-                        <div class="pub-title">Consumer Protection Regulations, 2025 (Revised Edition)</div>
-                        <a href="#" class="pub-download"><i class="fas fa-download" style="font-size:11px;"></i> Download PDF</a>
-                    </div>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-thumb" style="background: #FEF3E0;">
-                        📊
-                        <span class="pub-type-badge" style="background: #854F0B; color: white;">Report</span>
-                    </div>
-                    <div class="pub-body">
-                        <div class="pub-date">January 2026</div>
-                        <div class="pub-title">Annual Telecommunications Sector Statistics Report 2025</div>
-                        <a href="#" class="pub-download"><i class="fas fa-download" style="font-size:11px;"></i> Download PDF</a>
-                    </div>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-thumb" style="background: #EEEDFE;">
-                        📝
-                        <span class="pub-type-badge" style="background: #534AB7; color: white;">Consultation</span>
-                    </div>
-                    <div class="pub-body">
-                        <div class="pub-date">March 2026</div>
-                        <div class="pub-title">Discussion Paper: Universal Service Fund Reform — Public Comments Invited</div>
-                        <a href="#" class="pub-download"><i class="fas fa-download" style="font-size:11px;"></i> Download PDF</a>
-                    </div>
-                </div>
-                <div class="pub-card">
-                    <div class="pub-thumb" style="background: #E3F5EE;">
-                        📄
-                        <span class="pub-type-badge" style="background: #0F6E56; color: white;">Guideline</span>
-                    </div>
-                    <div class="pub-body">
-                        <div class="pub-date">December 2025</div>
-                        <div class="pub-title">Spectrum Management Framework for 5G Services in Botswana</div>
-                        <a href="#" class="pub-download"><i class="fas fa-download" style="font-size:11px;"></i> Download PDF</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="hero-bg">
-            <div class="hero-bg-circle c1"></div>
-            <div class="hero-bg-circle c2"></div>
-            <div class="hero-bg-lines"></div>
-        </div>
-        <div class="container">
-            <div class="cta-inner">
-                <div>
-                    <h2>Need assistance with communications regulation?</h2>
-                    <p>Our team is ready to help with licensing queries, compliance matters, consumer protection, and regulatory information. Reach us by phone, email, or visit our offices in Gaborone.</p>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-gold" style="width: 220px; justify-content: center;">
-                        <i class="fas fa-envelope"></i> Contact our team
-                    </a>
-                    <a href="#" class="btn btn-ghost" style="width: 220px; justify-content: center;">
-                        <i class="fas fa-phone-alt"></i> +267 392 3165
-                    </a>
-                    <a href="#" class="btn btn-ghost" style="width: 220px; justify-content: center;">
-                        <i class="fas fa-map-marker-alt"></i> Find our offices
-                    </a>
                 </div>
             </div>
         </div>
@@ -1396,16 +1152,16 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <div class="logo" style="margin-bottom: 14px;">
-                        <div class="logo-mark">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                    <div class="footer-logo-wrap">
+                        <div class="footer-logo-mark">
+                            <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
                                 <path d="M11 2L3 6v5c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6L11 2z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
                                 <path d="M8 11l2 2 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <div class="logo-text">
-                            <span class="logo-acronym" style="color:white;">BOCRA</span>
-                            <span class="logo-tagline" style="color:rgba(255,255,255,0.4);">Botswana Communications Regulatory Authority</span>
+                        <div>
+                            <div class="footer-acronym">BOCRA</div>
+                            <div class="footer-tagline">Botswana Communications Regulatory Authority</div>
                         </div>
                     </div>
                     <p class="footer-desc">BOCRA regulates the telecommunications, broadcasting, and postal sectors in Botswana — ensuring a fair, competitive, and innovative communications environment for all citizens.</p>
@@ -1433,9 +1189,9 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#">License application</a></li>
-                        <li><a href="#">License renewal</a></li>
-                        <li><a href="#">License verification</a></li>
+                        <li><a href="#">Licence application</a></li>
+                        <li><a href="#">Licence renewal</a></li>
+                        <li><a href="#">Licence verification</a></li>
                         <li><a href="#">File a complaint</a></li>
                         <li><a href="#">Public consultations</a></li>
                         <li><a href="#">Market data & reports</a></li>
@@ -1454,7 +1210,7 @@
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope footer-contact-icon"></i>
-                        <span class="footer-contact-text">info@bocra.org.bw</span>
+                        <span class="footer-contact-text"><a href="mailto:info@bocra.org.bw">info@bocra.org.bw</a></span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-clock footer-contact-icon"></i>
@@ -1476,13 +1232,28 @@
     </footer>
 
     <script>
-        // Header scroll effect
+        // ===== THEME TOGGLE =====
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Check saved preference
+        const saved = localStorage.getItem('bocra-theme');
+        if (saved) html.setAttribute('data-theme', saved);
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('bocra-theme', next);
+        });
+
+        // ===== HEADER SCROLL =====
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        // Mobile menu toggle
+        // ===== MOBILE MENU =====
         const toggle = document.getElementById('mobile-toggle');
         const menu = document.getElementById('mobile-menu');
         toggle.addEventListener('click', () => {
@@ -1490,10 +1261,9 @@
             const icon = toggle.querySelector('i');
             icon.className = open ? 'fas fa-times' : 'fas fa-bars';
             icon.style.fontSize = '20px';
-            icon.style.color = 'var(--navy)';
         });
 
-        // License type selection
+        // ===== LICENSE SELECTION =====
         document.querySelectorAll('.license-type-item').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.license-type-item').forEach(i => i.classList.remove('active'));
@@ -1501,24 +1271,10 @@
             });
         });
 
-        // Smooth scroll for anchors
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                const id = a.getAttribute('href');
-                if (id === '#') return;
-                const el = document.querySelector(id);
-                if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
-            });
-        });
-
-        // Intersection observer for fade-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.08 });
+        // ===== FADE IN OBSERVER =====
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
